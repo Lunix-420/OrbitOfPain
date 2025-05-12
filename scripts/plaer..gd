@@ -1,25 +1,37 @@
 extends CharacterBody2D
 
+const MAX_SPEED = 300
+const ACCELERATION = 500.0
+const ROTATION_SPEED = 5.0
+const FRICTION = 1000
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
+var speed = 0.00
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+	# Move prograde/retrograde
+	if Input.is_action_pressed("move_forward"):
+		speed += ACCELERATION * delta;
+	elif Input.is_action_pressed("move_backwards"):
+		if speed > 0:
+			speed -= ACCELERATION * delta * 2;
+		else:
+			speed -= ACCELERATION * delta;
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if speed > 0:
+			speed = max(speed - FRICTION * delta, 0)  # Gradually slow down
+		elif speed < 0:
+			speed = min(speed + FRICTION * delta, 0)  # Prevent reversing direction too fast
+	position += -transform.y * speed * delta
+
+	
+	if Input.is_action_pressed("move_left"):
+		position += -transform.x * MAX_SPEED * delta
+	if Input.is_action_pressed("move_right"):
+		position += transform.x * MAX_SPEED * delta
+	if Input.is_action_pressed("move_turn_ccw"):
+		rotation += ROTATION_SPEED * delta
+	if Input.is_action_pressed("move_turn_cw"):
+		rotation += -ROTATION_SPEED * delta
+	
 
 	move_and_slide()
