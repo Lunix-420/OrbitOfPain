@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd0r1cokjlsj3"]
+
+[ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/player.tscn" id="1_kqs1s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jeodi"]
+
+[sub_resource type="Gradient" id="Gradient_jeodi"]
+offsets = PackedFloat32Array(0, 0.488372, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1tnoa"]
+gradient = SubResource("Gradient_jeodi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1tnoa"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(100, 100, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 8.0
+color_ramp = SubResource("GradientTexture1D_1tnoa")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 1.0
+turbulence_noise_strength = 6.3
+
+[sub_resource type="Environment" id="Environment_jeodi"]
+background_mode = 3
+tonemap_mode = 4
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 1.0
+
+[node name="World" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -15000.0
+offset_top = -15000.0
+offset_right = 15000.0
+offset_bottom = 15000.0
+color = Color(0.0453133, 0.0378, 0.07, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_jeodi")
+scale = Vector2(100, 100)
+amount = 100000
+lifetime = 4.96
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1tnoa")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_kqs1s")]
+self_modulate = Color(0, 0, 0, 1)
+light_mask = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jeodi")
