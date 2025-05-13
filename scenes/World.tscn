@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dd0r1cokjlsj3"]
 
-[ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/player.tscn" id="1_kqs1s"]
+[ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/Player.tscn" id="1_kqs1s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeodi"]
 
