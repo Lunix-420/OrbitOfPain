@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="Veilstorm"
-run/main_scene="uid://71rc8k32st6a"
+run/main_scene="uid://dd0r1cokjlsj3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_height"
 
 [input]
 
@@ -50,5 +57,7 @@ move_turn_cw={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+viewport/hdr_2d=true
