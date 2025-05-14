@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3eq3han4dkrp"]
+
+[ext_resource type="Script" uid="uid://d3tme3041lxtx" path="res://scripts/plasma.gd" id="1_qtutu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kq07p"]
+
+[sub_resource type="Gradient" id="Gradient_qtutu"]
+offsets = PackedFloat32Array(0, 0.344186, 0.665116, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.103774, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oon8e"]
+gradient = SubResource("Gradient_qtutu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oon8e"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+velocity_pivot = Vector3(0, 100, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_oon8e")
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_qtutu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kq07p")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 200
+fixed_fps = 300
+process_material = SubResource("ParticleProcessMaterial_oon8e")

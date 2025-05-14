@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 1000
-const MAX_STRAVE_SPEED = 100
+const MAX_SPEED = 500
+const MAX_STRAVE_SPEED = 250
 const ACCELERATION = 2000.0
 const STRAVE_ACCELERATION = 1000.0
 const ROTATION_SPEED = 10.0
@@ -14,6 +14,7 @@ func _physics_process(delta: float) -> void:
 	handle_forward_backward_motion(delta)
 	handle_sideward_motion(delta)
 	handle_rotation(delta)
+	handle_shooting(delta)
 	move_and_slide()
 
 
@@ -71,3 +72,11 @@ func handle_rotation(delta: float) -> void:
 		rotation += ROTATION_SPEED * delta
 	if Input.is_action_pressed("move_turn_cw"):
 		rotation -= ROTATION_SPEED * delta
+
+func handle_shooting(delta: float) -> void:
+	if Input.is_action_just_pressed("action_shoot"):
+		print("Shoot")
+		var plasma = preload("res://scenes/Plasma.tscn").instantiate()
+		plasma.rotation = rotation
+		plasma.position = position
+		get_tree().current_scene.add_child(plasma)

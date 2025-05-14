@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dd0r1cokjlsj3"]
 
 [ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/Player.tscn" id="1_kqs1s"]
-[ext_resource type="PackedScene" uid="uid://dq44tpy22jtkp" path="res://scenes/Enemy.tscn" id="2_32lhk"]
+[ext_resource type="PackedScene" uid="uid://b3eq3han4dkrp" path="res://scenes/Plasma.tscn" id="2_32lhk"]
 
 [sub_resource type="Environment" id="Environment_jeodi"]
 background_mode = 3
@@ -48,10 +48,10 @@ turbulence_noise_strength = 6.3
 environment = SubResource("Environment_jeodi")
 
 [node name="Background" type="ColorRect" parent="."]
-offset_left = -14263.0
-offset_top = -13484.0
-offset_right = 15737.0
-offset_bottom = 16516.0
+offset_left = -13103.0
+offset_top = -13190.0
+offset_right = 16897.0
+offset_bottom = 16810.0
 color = Color(0.0453133, 0.0378, 0.07, 1)
 
 [node name="StarPaticles" type="GPUParticles2D" parent="."]
@@ -66,20 +66,5 @@ process_material = SubResource("ParticleProcessMaterial_1tnoa")
 self_modulate = Color(0, 0, 0, 1)
 light_mask = 3
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_32lhk")]
-position = Vector2(-539, 302)
-
-[node name="CharacterBody2D3" parent="." instance=ExtResource("2_32lhk")]
-position = Vector2(-581, -151)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_32lhk")]
-position = Vector2(400, 472)
-
-[node name="CharacterBody2D4" parent="." instance=ExtResource("2_32lhk")]
-position = Vector2(526, -166)
-
-[node name="CharacterBody2D5" parent="." instance=ExtResource("2_32lhk")]
-position = Vector2(-55, -464)
-
-[node name="CharacterBody2D6" parent="." instance=ExtResource("2_32lhk")]
-position = Vector2(-176, 404)
+[node name="Plasma" parent="." instance=ExtResource("2_32lhk")]
+position = Vector2(-119, -276)
