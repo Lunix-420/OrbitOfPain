@@ -3,6 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/Player.tscn" id="1_kqs1s"]
 [ext_resource type="PackedScene" uid="uid://dq44tpy22jtkp" path="res://scenes/Enemy.tscn" id="2_32lhk"]
 
+[sub_resource type="Environment" id="Environment_jeodi"]
+background_mode = 3
+tonemap_mode = 4
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 1.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeodi"]
 
 [sub_resource type="Gradient" id="Gradient_jeodi"]
@@ -35,23 +42,19 @@ hue_variation_min = -2.23517e-08
 hue_variation_max = 1.0
 turbulence_noise_strength = 6.3
 
-[sub_resource type="Environment" id="Environment_jeodi"]
-background_mode = 3
-tonemap_mode = 4
-glow_enabled = true
-glow_intensity = 2.0
-glow_bloom = 1.0
-
 [node name="World" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jeodi")
+
+[node name="Background" type="ColorRect" parent="."]
 offset_left = -14263.0
 offset_top = -13484.0
 offset_right = 15737.0
 offset_bottom = 16516.0
 color = Color(0.0453133, 0.0378, 0.07, 1)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="StarPaticles" type="GPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_jeodi")
 scale = Vector2(100, 100)
 amount = 100000
@@ -59,12 +62,9 @@ lifetime = 3.0
 fixed_fps = 10
 process_material = SubResource("ParticleProcessMaterial_1tnoa")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_kqs1s")]
+[node name="Player" parent="." instance=ExtResource("1_kqs1s")]
 self_modulate = Color(0, 0, 0, 1)
 light_mask = 3
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_jeodi")
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("2_32lhk")]
 position = Vector2(-539, 302)
