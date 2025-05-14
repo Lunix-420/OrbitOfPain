@@ -71,3 +71,15 @@ position = Vector2(-539, 302)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("2_32lhk")]
 position = Vector2(-581, -151)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_32lhk")]
+position = Vector2(400, 472)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("2_32lhk")]
+position = Vector2(526, -166)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("2_32lhk")]
+position = Vector2(-55, -464)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("2_32lhk")]
+position = Vector2(-176, 404)
