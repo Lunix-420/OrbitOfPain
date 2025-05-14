@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 const MAX_SPEED = 500
-const MAX_STRAVE_SPEED = 250
+const MAX_BACK_SPEED = 400
+const MAX_STRAVE_SPEED = 400
 const ACCELERATION = 2000.0
-const STRAVE_ACCELERATION = 1000.0
-const ROTATION_SPEED = 10.0
+const STRAVE_ACCELERATION = 1500.0
+const ROTATION_SPEED = 5.0
 const FRICTION = 500
 
 var speed = 0.0
@@ -33,7 +34,7 @@ func handle_forward_backward_motion(delta: float) -> void:
 			speed = max(speed - ACCELERATION * delta, 0)
 		else:
 			speed -= ACCELERATION * delta
-			speed = max(speed, -MAX_SPEED / 2.0)
+			speed = max(speed, -MAX_BACK_SPEED)
 		speed = min(speed + FRICTION * delta, 0) if speed < 0 else speed
 	else:
 		$ExhaustBackLeft.emitting = false

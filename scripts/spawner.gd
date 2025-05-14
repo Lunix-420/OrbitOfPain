@@ -1,7 +1,7 @@
-extends Node
+extends Node2D
 
 var spawn_timer: float = 0.0
-var spawn_interval: float = 3.0
+var spawn_interval: float = 2.0
 var SPAWN_DISTANCE: float = 2000.0
 
 func _process(delta: float) -> void:
@@ -18,4 +18,4 @@ func spawn_enemy() -> void:
 
 func get_spawn_point() -> Vector2:
 	var random_angle = randf_range(0, 2 * PI)
-	return Vector2(cos(random_angle) * SPAWN_DISTANCE, sin(random_angle) * SPAWN_DISTANCE)
+	return global_position + Vector2(cos(random_angle) * SPAWN_DISTANCE, sin(random_angle) * SPAWN_DISTANCE)

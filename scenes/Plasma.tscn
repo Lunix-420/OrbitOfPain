@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d3tme3041lxtx" path="res://scripts/plasma.gd" id="1_qtutu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq07p"]
+radius = 29.2062
 
 [sub_resource type="Gradient" id="Gradient_qtutu"]
 offsets = PackedFloat32Array(0, 0.344186, 0.665116, 1)
@@ -25,7 +26,8 @@ scale_min = 10.0
 scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_oon8e")
 
-[node name="Area2D" type="Area2D"]
+[node name="Plasma" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_qtutu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -36,3 +38,5 @@ amount = 200
 lifetime = 0.1
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_oon8e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -21,8 +21,8 @@ angle_max = 360.0
 velocity_pivot = Vector3(10, 0, 0)
 direction = Vector3(0, 1, 0)
 spread = 20.0
-initial_velocity_min = 1000.0
-initial_velocity_max = 2000.0
+initial_velocity_min = 500.0
+initial_velocity_max = 1000.0
 angular_velocity_min = -100.0
 angular_velocity_max = 100.0
 orbit_velocity_min = 9.49949e-08
@@ -33,7 +33,7 @@ gravity = Vector3(0, 0, 0)
 damping_min = 1000.0
 damping_max = 1000.0
 scale_min = 2.0
-scale_max = 5.0
+scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_qhqgy")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqap4"]
@@ -51,7 +51,7 @@ position = Vector2(0, -45)
 [node name="ExhaustBackLeft" type="GPUParticles2D" parent="."]
 position = Vector2(-43, 33)
 emitting = false
-amount = 500
+amount = 200
 lifetime = 0.35
 randomness = 1.0
 fixed_fps = 120
@@ -60,7 +60,7 @@ process_material = SubResource("ParticleProcessMaterial_g2els")
 [node name="ExhaustBackRight" type="GPUParticles2D" parent="."]
 position = Vector2(43, 35)
 emitting = false
-amount = 500
+amount = 200
 lifetime = 0.35
 randomness = 1.0
 fixed_fps = 120
@@ -70,7 +70,7 @@ process_material = SubResource("ParticleProcessMaterial_g2els")
 position = Vector2(-69, 0)
 rotation = 1.5708
 emitting = false
-amount = 500
+amount = 200
 lifetime = 0.35
 randomness = 1.0
 fixed_fps = 120
@@ -80,7 +80,7 @@ process_material = SubResource("ParticleProcessMaterial_g2els")
 position = Vector2(69, 0)
 rotation = -1.5708
 emitting = false
-amount = 500
+amount = 200
 lifetime = 0.35
 randomness = 1.0
 fixed_fps = 120
@@ -90,7 +90,7 @@ process_material = SubResource("ParticleProcessMaterial_g2els")
 position = Vector2(0, -41)
 rotation = 3.14159
 emitting = false
-amount = 500
+amount = 200
 lifetime = 0.35
 randomness = 1.0
 fixed_fps = 120
@@ -109,5 +109,5 @@ shape = SubResource("CapsuleShape2D_pqap4")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
-[node name="Spawner" type="Node" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("3_3li8b")
