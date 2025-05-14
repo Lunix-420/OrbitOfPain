@@ -75,8 +75,9 @@ func handle_rotation(delta: float) -> void:
 
 func handle_shooting(delta: float) -> void:
 	if Input.is_action_just_pressed("action_shoot"):
-		print("Shoot")
+		var shooter = get_node("Shooter")
 		var plasma = preload("res://scenes/Plasma.tscn").instantiate()
 		plasma.rotation = rotation
-		plasma.position = position
+		plasma.position = shooter.global_position
+		plasma.set("init_speed", speed)
 		get_tree().current_scene.add_child(plasma)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd0r1cokjlsj3"]
+[gd_scene load_steps=7 format=3 uid="uid://dd0r1cokjlsj3"]
 
 [ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/Player.tscn" id="1_kqs1s"]
-[ext_resource type="PackedScene" uid="uid://b3eq3han4dkrp" path="res://scenes/Plasma.tscn" id="2_32lhk"]
 
 [sub_resource type="Environment" id="Environment_jeodi"]
 background_mode = 3
@@ -65,6 +64,4 @@ process_material = SubResource("ParticleProcessMaterial_1tnoa")
 [node name="Player" parent="." instance=ExtResource("1_kqs1s")]
 self_modulate = Color(0, 0, 0, 1)
 light_mask = 3
-
-[node name="Plasma" parent="." instance=ExtResource("2_32lhk")]
-position = Vector2(-119, -276)
+z_index = 10
