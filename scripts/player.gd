@@ -5,7 +5,7 @@ const MAX_BACK_SPEED = 400
 const MAX_STRAVE_SPEED = 400
 const ACCELERATION = 2000.0
 const STRAVE_ACCELERATION = 1500.0
-const ROTATION_SPEED = 5.0
+const ROTATION_SPEED = 4.0
 const FRICTION = 500
 const ENERGY_LOSS = 1000
 const IDLE_ENERGY_CONSUMPTION = 20
@@ -24,6 +24,9 @@ func _physics_process(delta: float) -> void:
 	handle_shooting(delta)
 	handle_use_energ(IDLE_ENERGY_CONSUMPTION * delta)
 	move_and_slide()
+
+func loose_health():
+	healthBar.set_current_value(healthBar.current_value - 200)
 
 func collect_energy():
 	energyBar.set_current_value(energyBar.current_value + 120)

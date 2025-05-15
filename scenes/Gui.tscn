@@ -20,15 +20,15 @@ metadata/_edit_horizontal_guides_ = [70.0]
 metadata/_edit_vertical_guides_ = [79.0]
 
 [node name="Health" parent="." instance=ExtResource("1_cyl48")]
-offset_left = -166.0
-offset_top = -63.0
-offset_right = -126.0
-offset_bottom = -23.0
+offset_left = -87.0
+offset_top = 7.0
+offset_right = -47.0
+offset_bottom = 47.0
 
 [node name="Energy" parent="." instance=ExtResource("3_wwu88")]
-offset_left = -166.0
-offset_top = 124.0
-offset_right = -126.0
-offset_bottom = 164.0
+offset_left = -87.0
+offset_top = 194.0
+offset_right = -47.0
+offset_bottom = 234.0
 max_value = 1000.0
 current_value = 1000.0

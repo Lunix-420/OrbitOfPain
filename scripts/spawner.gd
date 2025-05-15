@@ -1,6 +1,6 @@
 extends Node2D
 
-var spawn_timer: float = 0.0
+var spawn_timer: float = 5.0
 var spawn_interval: float = 5.0
 var SPAWN_DISTANCE: float = 2000.0
 
