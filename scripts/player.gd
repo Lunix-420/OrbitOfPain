@@ -7,9 +7,14 @@ const ACCELERATION = 2000.0
 const STRAVE_ACCELERATION = 1500.0
 const ROTATION_SPEED = 5.0
 const FRICTION = 500
+const ENERGY_LOSS = 1000
 
 var speed = 0.0
 var strave_speed = 0.0
+
+@export var gui: Control
+@onready var healthBar: BaseBar = gui.get_node("Health")
+@onready var energyBar: BaseBar = gui.get_node("Energy")
 
 func _physics_process(delta: float) -> void:
 	handle_forward_backward_motion(delta)
@@ -17,6 +22,7 @@ func _physics_process(delta: float) -> void:
 	handle_rotation(delta)
 	handle_shooting(delta)
 	move_and_slide()
+	
 
 
 func handle_forward_backward_motion(delta: float) -> void:

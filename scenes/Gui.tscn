@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://m1cjpvkoeugn"]
+
+[ext_resource type="Script" uid="uid://bun6n6p0fekt4" path="res://scripts/gui.gd" id="1_baflc"]
+[ext_resource type="PackedScene" uid="uid://q1u3xbpcw0ru" path="res://scenes/HealthBar.tscn" id="1_cyl48"]
+[ext_resource type="PackedScene" uid="uid://c06tktomgy1l2" path="res://scenes/EnergyBar.tscn" id="3_wwu88"]
+
+[node name="Gui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = -7.0
+offset_right = 96.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_baflc")
+metadata/_edit_horizontal_guides_ = [70.0]
+metadata/_edit_vertical_guides_ = [79.0]
+
+[node name="Health" parent="." instance=ExtResource("1_cyl48")]
+offset_left = -166.0
+offset_top = -63.0
+offset_right = -126.0
+offset_bottom = -23.0
+max_value = 1000.0
+current_value = 1000.0
+
+[node name="Energy" parent="." instance=ExtResource("3_wwu88")]
+offset_left = -166.0
+offset_top = 124.0
+offset_right = -126.0
+offset_bottom = 164.0
+max_value = 1000.0
+current_value = 1000.0

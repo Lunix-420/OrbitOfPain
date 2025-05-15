@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://q1u3xbpcw0ru"]
+
+[ext_resource type="Script" uid="uid://vksf7k1i7qm" path="res://scripts/bar.gd" id="1_tmb1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjbvn"]
+bg_color = Color(0.69, 0.645725, 0.3105, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt2bf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ml04q"]
+bg_color = Color(0.360784, 0.690196, 0.309804, 1)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("top_bar", "bottom_bar")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tmb1u")
+top_bar = NodePath("TopHealthBar")
+bottom_bar = NodePath("ButtomHealthBar")
+max_value = 1000.0
+current_value = 1000.0
+
+[node name="ButtomHealthBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 70.0
+offset_right = 1450.0
+offset_bottom = 220.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_kjbvn")
+max_value = 1000.0
+value = 100.0
+show_percentage = false
+
+[node name="TopHealthBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 70.0
+offset_right = 1450.0
+offset_bottom = 220.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yt2bf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ml04q")
+max_value = 1000.0
+value = 100.0
+show_percentage = false

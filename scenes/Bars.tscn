@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cn1xx2auwt2i3"]
+
+[node name="Bar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_vertical_guides_ = [70.0]
+metadata/_edit_horizontal_guides_ = [70.0, 220.0, 255.0]

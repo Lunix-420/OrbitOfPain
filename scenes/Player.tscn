@@ -44,6 +44,8 @@ height = 132.0
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_qm0ti")
+metadata/_edit_horizontal_guides_ = [-1030.0]
+metadata/_edit_vertical_guides_ = [-1870.0]
 
 [node name="Shooter" type="Marker2D" parent="."]
 position = Vector2(0, -45)
