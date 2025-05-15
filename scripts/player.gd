@@ -8,6 +8,7 @@ const STRAVE_ACCELERATION = 1500.0
 const ROTATION_SPEED = 5.0
 const FRICTION = 500
 const ENERGY_LOSS = 1000
+const IDLE_ENERGY_CONSUMPTION = 10
 
 var speed = 0.0
 var strave_speed = 0.0
@@ -21,8 +22,11 @@ func _physics_process(delta: float) -> void:
 	handle_sideward_motion(delta)
 	handle_rotation(delta)
 	handle_shooting(delta)
+	handle_use_energ(IDLE_ENERGY_CONSUMPTION * delta)
 	move_and_slide()
-	
+
+func handle_use_energ(amount: float):
+	energyBar.set_current_value(energyBar.current_value - amount)
 
 
 func handle_forward_backward_motion(delta: float) -> void:

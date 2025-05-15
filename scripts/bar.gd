@@ -15,7 +15,7 @@ func _ready() -> void:
 func set_default_values(bar: ProgressBar):
 	bar.min_value = min_value
 	bar.max_value = max_value
-	bar.value -= current_value
+	bar.value = current_value
 
 func set_current_value(value: float):
 	current_value = clamp(value, min_value, max_value)
