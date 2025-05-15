@@ -12,4 +12,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func take_damage() -> void:
+	spawn_energy()
 	queue_free()
+
+func spawn_energy() -> void:
+	var energy = preload("res://scenes/Energy.tscn").instantiate()
+	energy.position = global_position
+	get_tree().current_scene.add_child(energy)

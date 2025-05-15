@@ -1,7 +1,7 @@
 extends Node2D
 
 var spawn_timer: float = 0.0
-var spawn_interval: float = 2.0
+var spawn_interval: float = 5.0
 var SPAWN_DISTANCE: float = 2000.0
 
 func _process(delta: float) -> void:

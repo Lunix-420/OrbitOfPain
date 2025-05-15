@@ -8,7 +8,7 @@ const STRAVE_ACCELERATION = 1500.0
 const ROTATION_SPEED = 5.0
 const FRICTION = 500
 const ENERGY_LOSS = 1000
-const IDLE_ENERGY_CONSUMPTION = 10
+const IDLE_ENERGY_CONSUMPTION = 20
 
 var speed = 0.0
 var strave_speed = 0.0
@@ -24,6 +24,9 @@ func _physics_process(delta: float) -> void:
 	handle_shooting(delta)
 	handle_use_energ(IDLE_ENERGY_CONSUMPTION * delta)
 	move_and_slide()
+
+func collect_energy():
+	energyBar.set_current_value(energyBar.current_value + 120)
 
 func handle_use_energ(amount: float):
 	energyBar.set_current_value(energyBar.current_value - amount)
@@ -92,3 +95,6 @@ func handle_shooting(delta: float) -> void:
 		plasma.position = shooter.global_position
 		plasma.set("init_speed", speed)
 		get_tree().current_scene.add_child(plasma)
+
+
+	

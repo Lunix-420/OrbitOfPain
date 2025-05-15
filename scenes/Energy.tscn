@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx8dcf6b4y0y0"]
+
+[ext_resource type="Script" uid="uid://bbenglmrrg2eu" path="res://scripts/energy.gd" id="1_eb132"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ly2v0"]
+radius = 46.0435
+
+[sub_resource type="Gradient" id="Gradient_ly2v0"]
+offsets = PackedFloat32Array(0, 0.513636, 0.863636, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.21519, 1, 1, 0.78481, 0, 0, 1, 1, 0, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eb132"]
+gradient = SubResource("Gradient_ly2v0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ly2v0"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+damping_min = 300.0
+damping_max = 300.0
+scale_min = 5.0
+scale_max = 15.0
+color_ramp = SubResource("GradientTexture1D_eb132")
+
+[node name="Energy" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_eb132")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ly2v0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ly2v0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
