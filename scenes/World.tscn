@@ -50,19 +50,11 @@ metadata/_edit_vertical_guides_ = [-1870.0]
 environment = SubResource("Environment_jeodi")
 
 [node name="Background" type="ColorRect" parent="."]
-visible = false
 offset_left = -13103.0
 offset_top = -13190.0
 offset_right = 16897.0
 offset_bottom = 16810.0
 color = Color(0.0453133, 0.0378, 0.07, 1)
-
-[node name="Gui" parent="." instance=ExtResource("1_32lhk")]
-offset_left = -1804.0
-offset_top = -1067.0
-offset_right = -1804.0
-offset_bottom = -1067.0
-player_path = NodePath("../Player")
 
 [node name="StarPaticles" type="GPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_jeodi")
@@ -78,4 +70,9 @@ light_mask = 3
 z_index = 10
 gui = NodePath("../Gui")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="Gui" parent="." instance=ExtResource("1_32lhk")]
+offset_left = -1804.0
+offset_top = -1067.0
+offset_right = -1804.0
+offset_bottom = -1067.0
+player_path = NodePath("../Player")

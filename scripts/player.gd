@@ -1,5 +1,17 @@
 extends CharacterBody2D
 
+@export var gui: Control
+
+@onready var shooter = get_node("Shooter")
+@onready var sprite = get_node("Sprite")
+@onready var exhaustBackLeft = sprite.get_node("ExhaustBackLeft")
+@onready var exhaustBackRight = sprite.get_node("ExhaustBackLeft")
+@onready var exhaustSideLeft = sprite.get_node("ExhaustSideLeft")
+@onready var exhaustSideRight = sprite.get_node("ExhaustSideRight")
+@onready var exhaustFront = sprite.get_node("ExhaustFront")
+@onready var healthBar: BaseBar = gui.get_node("Health")
+@onready var energyBar: BaseBar = gui.get_node("Energy")
+
 const MAX_SPEED = 500
 const MAX_BACK_SPEED = 400
 const MAX_STRAVE_SPEED = 400
@@ -12,10 +24,6 @@ const IDLE_ENERGY_CONSUMPTION = 20
 
 var speed = 0.0
 var strave_speed = 0.0
-
-@export var gui: Control
-@onready var healthBar: BaseBar = gui.get_node("Health")
-@onready var energyBar: BaseBar = gui.get_node("Energy")
 
 func _physics_process(delta: float) -> void:
 	handle_forward_backward_motion(delta)
@@ -39,13 +47,13 @@ func handle_forward_backward_motion(delta: float) -> void:
 	if Input.is_action_pressed("move_forward") and not Input.is_action_pressed("move_backwards"):
 		speed += ACCELERATION * delta
 		speed = min(speed, MAX_SPEED)
-		$ExhaustBackLeft.emitting = true
-		$ExhaustBackRight.emitting = true
-		$ExhaustFront.emitting = false
+		exhaustBackLeft.emitting = true
+		exhaustBackRight.emitting = true
+		exhaustFront.emitting = false
 	elif Input.is_action_pressed("move_backwards") and not Input.is_action_pressed("move_forward"):
-		$ExhaustBackLeft.emitting = false
-		$ExhaustBackRight.emitting = false
-		$ExhaustFront.emitting = true
+		exhaustBackLeft.emitting = false
+		exhaustBackRight.emitting = false
+		exhaustFront.emitting = true
 		if speed > 0:
 			speed = max(speed - ACCELERATION * delta, 0)
 		else:
@@ -53,46 +61,48 @@ func handle_forward_backward_motion(delta: float) -> void:
 			speed = max(speed, -MAX_BACK_SPEED)
 		speed = min(speed + FRICTION * delta, 0) if speed < 0 else speed
 	else:
-		$ExhaustBackLeft.emitting = false
-		$ExhaustBackRight.emitting = false
-		$ExhaustFront.emitting = false
+		exhaustBackLeft.emitting = false
+		exhaustBackRight.emitting = false
+		exhaustFront.emitting = false
 		if speed > 0:
 			speed = max(speed - FRICTION * delta, 0)
 		elif speed < 0:
 			speed = min(speed + FRICTION * delta, 0)
-	position += -transform.y * speed * delta
 
+	var forward = sprite.global_transform.y.normalized()
+	position += forward * speed * delta
 
 func handle_sideward_motion(delta: float) -> void:
 	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
 		strave_speed += STRAVE_ACCELERATION * delta
 		strave_speed = min(strave_speed, MAX_STRAVE_SPEED)
-		$ExhaustSideRight.emitting = true
-		$ExhaustSideLeft.emitting = false
+		exhaustSideRight.emitting = true
+		exhaustSideLeft.emitting = false
 	elif Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left"):
 		strave_speed -= STRAVE_ACCELERATION * delta
 		strave_speed = max(strave_speed, -MAX_STRAVE_SPEED)
-		$ExhaustSideRight.emitting = false
-		$ExhaustSideLeft.emitting = true
+		exhaustSideRight.emitting = false
+		exhaustSideLeft.emitting = true
 	else:
-		$ExhaustSideLeft.emitting = false
-		$ExhaustSideRight.emitting = false
+		exhaustSideLeft.emitting = false
+		exhaustSideRight.emitting = false
 		if strave_speed > 0:
 			strave_speed = max(strave_speed - FRICTION * delta, 0)
 		elif strave_speed < 0:
 			strave_speed = min(strave_speed + FRICTION * delta, 0)
-	position += -transform.x * strave_speed * delta
 
+	var right = sprite.global_transform.x.normalized()
+	position += right * strave_speed * delta
 
 func handle_rotation(delta: float) -> void:
 	if Input.is_action_pressed("move_turn_ccw"):
-		rotation += ROTATION_SPEED * delta
+		sprite.rotation += ROTATION_SPEED * delta
 	if Input.is_action_pressed("move_turn_cw"):
-		rotation -= ROTATION_SPEED * delta
+		sprite.rotation -= ROTATION_SPEED * delta
 
 func handle_shooting(delta: float) -> void:
 	if Input.is_action_just_pressed("action_shoot"):
-		var shooter = get_node("Shooter")
+		
 		var plasma = preload("res://scenes/Plasma.tscn").instantiate()
 		plasma.rotation = rotation
 		plasma.position = shooter.global_position
