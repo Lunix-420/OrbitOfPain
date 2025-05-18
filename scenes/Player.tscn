@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://71rc8k32st6a"]
+[gd_scene load_steps=12 format=3 uid="uid://71rc8k32st6a"]
 
 [ext_resource type="Script" uid="uid://cged4wdm7o1j0" path="res://scripts/player.gd" id="1_qm0ti"]
 [ext_resource type="Texture2D" uid="uid://ceomkl5mknhy0" path="res://ships/Spaceship(1).png" id="2_g2els"]
 [ext_resource type="Script" uid="uid://bkne57gikkxc6" path="res://scripts/spawner.gd" id="3_3li8b"]
+[ext_resource type="PackedScene" uid="uid://m1cjpvkoeugn" path="res://scenes/Gui.tscn" id="4_mdl7e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqap4"]
 radius = 44.0
@@ -49,7 +50,7 @@ frequency = 0.0013
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qu4a1"]
 width = 4000
-height = 2250
+height = 2300
 color_ramp = SubResource("Gradient_3li8b")
 noise = SubResource("FastNoiseLite_mdl7e")
 
@@ -138,17 +139,23 @@ script = ExtResource("3_3li8b")
 position = Vector2(-23, -5)
 zoom = Vector2(0.5, 0.5)
 
-[node name="Noise" type="TextureRect" parent="."]
+[node name="Noise" type="TextureRect" parent="Camera"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4888.0
-offset_top = -4956.0
-offset_right = 5112.0
-offset_bottom = 5044.0
+offset_left = -1977.0
+offset_top = -1145.0
+offset_right = 2023.0
+offset_bottom = 1155.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_qu4a1")
 stretch_mode = 3
+
+[node name="Gui" parent="Camera" instance=ExtResource("4_mdl7e")]
+offset_left = -1768.0
+offset_top = -1057.0
+offset_right = -1768.0
+offset_bottom = -1057.0

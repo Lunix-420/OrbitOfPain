@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@export var gui: Control
-
 @onready var shooter = get_node("Shooter")
 @onready var sprite = get_node("Sprite")
 @onready var exhaustBackLeft = sprite.get_node("ExhaustBackLeft")
@@ -9,6 +7,9 @@ extends CharacterBody2D
 @onready var exhaustSideLeft = sprite.get_node("ExhaustSideLeft")
 @onready var exhaustSideRight = sprite.get_node("ExhaustSideRight")
 @onready var exhaustFront = sprite.get_node("ExhaustFront")
+
+@onready var camera: Camera2D = get_node("Camera")
+@onready var gui: Control = camera.get_node("Gui")
 @onready var healthBar: BaseBar = gui.get_node("Health")
 @onready var energyBar: BaseBar = gui.get_node("Energy")
 
