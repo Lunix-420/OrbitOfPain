@@ -5,6 +5,8 @@ var spawn_interval: float = 5.0
 var SPAWN_DISTANCE: float = 2000.0
 
 func _process(delta: float) -> void:
+	if not GlobalState.game_started:
+		return
 	spawn_timer += delta
 	if spawn_timer >= spawn_interval:
 		spawn_enemy()

@@ -1,5 +1,19 @@
 extends CharacterBody2D
 
+var speed = 0.0
+var strave_speed = 0.0
+
+const MAX_SPEED = 500
+const MAX_BACK_SPEED = 500
+const MAX_STRAVE_SPEED = 400
+const ACCELERATION = 2000.0
+const STRAVE_ACCELERATION = 1500.0
+const ROTATION_SPEED = 4.0
+const FRICTION = 500
+const ENERGY_LOSS = 1000
+const IDLE_ENERGY_CONSUMPTION = 20
+
+
 @onready var sprite = get_node("Sprite")
 @onready var shooter = sprite.get_node("Shooter")
 @onready var exhaustBackLeft = sprite.get_node("ExhaustBackLeft")
@@ -13,30 +27,18 @@ extends CharacterBody2D
 @onready var gui: Control = camera.get_node("Gui")
 @onready var healthBar: BaseBar = gui.get_node("Health")
 @onready var energyBar: BaseBar = gui.get_node("Energy")
-
 @export var plasma_scene: PackedScene
 
-const MAX_SPEED = 500
-const MAX_BACK_SPEED = 500
-const MAX_STRAVE_SPEED = 400
-const ACCELERATION = 2000.0
-const STRAVE_ACCELERATION = 1500.0
-const ROTATION_SPEED = 4.0
-const FRICTION = 500
-const ENERGY_LOSS = 1000
-const IDLE_ENERGY_CONSUMPTION = 20
-
-var speed = 0.0
-var strave_speed = 0.0
-
 func _physics_process(delta: float) -> void:
+	if not GlobalState.game_started:
+		return
 	handle_forward_backward_motion(delta)
 	handle_sideward_motion(delta)
 	handle_rotation(delta)
 	handle_shooting(delta)
 	handle_use_energ(IDLE_ENERGY_CONSUMPTION * delta)
 	move_and_slide()
-
+	
 func loose_health():
 	healthBar.set_current_value(healthBar.current_value - 200)
 
