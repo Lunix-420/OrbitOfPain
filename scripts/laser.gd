@@ -4,7 +4,7 @@ extends Area2D
 var init_speed = 0
 
 const SPEED = 1000.0
-const GAIN = 12.0
+const GAIN = 6.0
 
 func _ready() -> void:
 	var sfx_clone = sfx.duplicate()

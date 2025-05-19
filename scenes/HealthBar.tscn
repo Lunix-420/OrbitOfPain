@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://vksf7k1i7qm" path="res://scripts/bar.gd" id="1_tmb1u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjbvn"]
-bg_color = Color(0.69, 0.645725, 0.3105, 1)
+bg_color = Color(0.690196, 0, 0.309804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt2bf"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

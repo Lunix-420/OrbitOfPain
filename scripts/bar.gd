@@ -20,7 +20,7 @@ func set_default_values(bar: ProgressBar):
 func set_current_value(value: float):
 	current_value = clamp(value, min_value, max_value)
 	run_tween(top_bar, current_value, 0.2, 0)
-	run_tween(bottom_bar, current_value, 0.4, 0.1)
+	run_tween(bottom_bar, current_value, 0.8, 0.2)
 
 func run_tween(bar: ProgressBar, value: float, length: float, delay: float):
 	var tween = get_tree().create_tween()

@@ -32,9 +32,10 @@ const ENERGY_LOSS = 1000.0
 
 #==================================================================================================#
 # Audio Config
-const ENERGY_AUDIO_GAIN_DB = -12.0
-const EXHAUST_AUDIO_GAIN_DB = 0.0
-const EXPLOSION_GAIN = -0.0
+const ENERGY_AUDIO_GAIN_DB = 0.0
+const EXHAUST_AUDIO_GAIN_DB = -3.0
+const EXPLOSION_GAIN = 6.0
+const DAMAGE_GAIN = 0.0
 
 #==================================================================================================#
 # Nodes 
@@ -52,6 +53,7 @@ const EXPLOSION_GAIN = -0.0
 @onready var energy_bar: BaseBar = gui.get_node("Energy")
 @onready var energy_audio: AudioStreamPlayer2D = $EnergyAudioPlayer
 @onready var exhaust_audio: AudioStreamPlayer2D = $ExhaustAudioPlayer
+@onready var damage_audio: AudioStreamPlayer2D = $DamageAudioPlayer
 @onready var explosion: GPUParticles2D = get_node("Explosion")
 @export var plasma_scene: PackedScene
 
@@ -60,6 +62,7 @@ const EXPLOSION_GAIN = -0.0
 
 func _ready() -> void:
 	exhaust_audio.volume_db = GlobalState.sfx_volume + EXHAUST_AUDIO_GAIN_DB
+	damage_audio.volume_db = GlobalState.sfx_volume + DAMAGE_GAIN
 
 func _physics_process(delta: float) -> void:
 	if not GlobalState.game_started:
@@ -170,9 +173,11 @@ func _set_exhaust_emission(direction: ExhaustDirection, state: bool) -> void:
 # Health & Energy 
 
 func loose_health() -> void:
-	health_bar.set_current_value(health_bar.current_value - 200)
+	health_bar.set_current_value(health_bar.current_value - 150)
 	if health_bar.current_value <= 0:
 		death()
+	else:
+		damage_audio.play()
 
 func collect_energy() -> void:
 	energy_bar.set_current_value(energy_bar.current_value + 120)
@@ -190,6 +195,8 @@ func death() -> void:
 	get_tree().reload_current_scene()
 
 func explode() -> void:
+	if not GlobalState.game_started:
+		return
 	var explosion_clone = explosion.duplicate()
 	explosion_clone.emitting = true
 	var sfx_clone = explosion_clone.get_node("Sfx")

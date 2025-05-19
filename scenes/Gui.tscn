@@ -8,6 +8,7 @@ script/source = "extends Control
 "
 
 [node name="Gui" type="Control"]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,12 +24,14 @@ metadata/_edit_horizontal_guides_ = [70.0]
 metadata/_edit_vertical_guides_ = [79.0]
 
 [node name="Health" parent="." instance=ExtResource("1_cyl48")]
+z_index = 100
 offset_left = -87.0
 offset_top = 7.0
 offset_right = -47.0
 offset_bottom = 47.0
 
 [node name="Energy" parent="." instance=ExtResource("3_wwu88")]
+z_index = 100
 offset_left = -87.0
 offset_top = 194.0
 offset_right = -47.0

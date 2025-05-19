@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var explosion: GPUParticles2D = get_node("Explosion")
 
-const EXPLOSION_GAIN: float = -0.0
+const EXPLOSION_GAIN: float = 0.0
 const SPEED = 10000.0
 const ATTACK_TIMEOUT = 1.5
 

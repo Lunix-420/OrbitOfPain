@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://dst87herimqhf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lgw5"]
+size = Vector2(50, 6050)
+
+[node name="Border" type="Node2D"]
+light_mask = 3
+visibility_layer = 3
+z_index = 100
+
+[node name="TopBorderArea" type="StaticBody2D" parent="."]
+position = Vector2(-3000, -3000)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Border" type="ColorRect" parent="TopBorderArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 6000.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="TopBorderArea"]
+offset_left = -2000.0
+offset_top = -1500.0
+offset_bottom = 7500.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorderArea"]
+position = Vector2(3025, 25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_1lgw5")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="BottomBorderArea" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Border" type="ColorRect" parent="BottomBorderArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3000.0
+offset_top = 3000.0
+offset_right = 3050.0
+offset_bottom = 3050.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="BottomBorderArea"]
+offset_left = -5000.0
+offset_top = 3050.0
+offset_right = 5050.0
+offset_bottom = 5050.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBorderArea"]
+position = Vector2(25, 3025)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_1lgw5")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="LeftBorderArea" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Border" type="ColorRect" parent="LeftBorderArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3000.0
+offset_top = -3000.0
+offset_right = -2950.0
+offset_bottom = 3000.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="LeftBorderArea"]
+offset_left = -5000.0
+offset_top = -5000.0
+offset_right = 5050.0
+offset_bottom = -3000.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorderArea"]
+position = Vector2(-2975, 25)
+shape = SubResource("RectangleShape2D_1lgw5")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="RightBorderArea" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Border" type="ColorRect" parent="RightBorderArea"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3000.0
+offset_top = -3000.0
+offset_right = 3050.0
+offset_bottom = 3000.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="RightBorderArea"]
+offset_left = 3050.0
+offset_top = -4500.0
+offset_right = 5050.0
+offset_bottom = 4500.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorderArea"]
+position = Vector2(3025, 25)
+shape = SubResource("RectangleShape2D_1lgw5")
+debug_color = Color(0, 1, 0, 0.419608)
