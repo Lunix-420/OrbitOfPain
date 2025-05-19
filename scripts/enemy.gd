@@ -30,7 +30,7 @@ func handle_shooting(delta: float):
 		laser.position = global_position
 		#laser.set("init_speed", speed)
 		get_tree().current_scene.add_child(laser)
-		shoot_timer = 0.0
+		shoot_timer = 0.07
 
 func take_damage() -> void:
 	var explosion_clone = explosion.duplicate()
