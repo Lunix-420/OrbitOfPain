@@ -90,11 +90,14 @@ light_mask = 3
 z_index = 10
 
 [node name="Border" type="Node2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+z_index = 100
 
-[node name="TopBorderArea" type="Area2D" parent="Border"]
+[node name="TopBorderArea" type="StaticBody2D" parent="Border"]
 position = Vector2(-3000, -3000)
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 
 [node name="Border" type="ColorRect" parent="Border/TopBorderArea"]
 anchors_preset = 8
@@ -119,9 +122,9 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_1lgw5")
 debug_color = Color(0, 1, 0, 0.419608)
 
-[node name="BottomBorderArea" type="Area2D" parent="Border"]
+[node name="BottomBorderArea" type="StaticBody2D" parent="Border"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 
 [node name="Border" type="ColorRect" parent="Border/BottomBorderArea"]
 anchors_preset = 8
@@ -149,9 +152,9 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_1lgw5")
 debug_color = Color(0, 1, 0, 0.419608)
 
-[node name="LeftBorderArea" type="Area2D" parent="Border"]
+[node name="LeftBorderArea" type="StaticBody2D" parent="Border"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 
 [node name="Border" type="ColorRect" parent="Border/LeftBorderArea"]
 anchors_preset = 8
@@ -178,9 +181,9 @@ position = Vector2(-2975, 25)
 shape = SubResource("RectangleShape2D_1lgw5")
 debug_color = Color(0, 1, 0, 0.419608)
 
-[node name="RightBorderArea" type="Area2D" parent="Border"]
+[node name="RightBorderArea" type="StaticBody2D" parent="Border"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 
 [node name="Border" type="ColorRect" parent="Border/RightBorderArea"]
 anchors_preset = 8
