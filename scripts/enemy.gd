@@ -3,23 +3,28 @@ extends CharacterBody2D
 @onready var explosion: GPUParticles2D = get_node("Explosion")
 
 const EXPLOSION_GAIN: float = -0.0
+const SPEED = 10000.0
+const ATTACK_TIMEOUT = 1.5
 
 var player: CharacterBody2D
-var shoot_timer: float = -5.0
+var shoot_timer: float = -3.0
+
 
 func _ready():
 	player = get_node("../Player")
 
 func _physics_process(delta: float) -> void:
+	if not GlobalState.game_started:
+		return
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 10000.0 * delta
+	velocity = direction * SPEED * delta
 	rotation = direction.angle() + PI / 2
 	handle_shooting(delta)
 	move_and_slide()
-	
+
 func handle_shooting(delta: float):
 	shoot_timer += delta
-	if shoot_timer >= 1.0:
+	if shoot_timer >= ATTACK_TIMEOUT:
 		var laser = preload("res://scenes/Laser.tscn").instantiate()
 		laser.rotation = rotation
 		laser.position = global_position

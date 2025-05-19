@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-# === Enums ===
+#==================================================================================================#
+# Enums
 enum ExhaustDirection {
 	Front,
 	Back,
@@ -8,12 +9,14 @@ enum ExhaustDirection {
 	Right
 }
 
-# === State Variables ===
+#==================================================================================================#
+# State Variables
 var is_dead: bool = false
 var forward_speed: float = 0.0
 var strafe_speed: float = 0.0
 
-# === Movement Config ===
+#==================================================================================================#
+# Movement Config
 const MAX_FORWARD_SPEED = 500.0
 const MAX_BACKWARD_SPEED = 500.0
 const MAX_STRAFE_SPEED = 400.0
@@ -22,16 +25,20 @@ const STRAFE_ACCEL = 4000.0
 const ROTATE_SPEED = 4.0
 const FRICTION = 500.0
 
-# === Energy Config ===
+#==================================================================================================#
+# Energy Config
 const BASE_ENERGY_DRAIN = 20.0
 const ENERGY_LOSS = 1000.0
 
-# === Audio Config ===
+#==================================================================================================#
+# Audio Config
 const ENERGY_AUDIO_GAIN_DB = -12.0
 const EXHAUST_AUDIO_GAIN_DB = 0.0
+const EXPLOSION_GAIN = -0.0
 
-# === Nodes ===
-@onready var sprite = $Sprite
+#==================================================================================================#
+# Nodes 
+@onready var sprite = get_node("Sprite")
 @onready var shooter = sprite.get_node("Shooter")
 @onready var exhaust_back_left = sprite.get_node("ExhaustBackLeft")
 @onready var exhaust_back_right = sprite.get_node("ExhaustBackRight")
@@ -45,6 +52,7 @@ const EXHAUST_AUDIO_GAIN_DB = 0.0
 @onready var energy_bar: BaseBar = gui.get_node("Energy")
 @onready var energy_audio: AudioStreamPlayer2D = $EnergyAudioPlayer
 @onready var exhaust_audio: AudioStreamPlayer2D = $ExhaustAudioPlayer
+@onready var explosion: GPUParticles2D = get_node("Explosion")
 @export var plasma_scene: PackedScene
 
 #==================================================================================================#
@@ -54,7 +62,7 @@ func _ready() -> void:
 	exhaust_audio.volume_db = GlobalState.sfx_volume + EXHAUST_AUDIO_GAIN_DB
 
 func _physics_process(delta: float) -> void:
-	if not GlobalState.game_started or is_dead:
+	if not GlobalState.game_started:
 		return
 	_process_movement(delta)
 	_process_rotation(delta)
@@ -164,7 +172,7 @@ func _set_exhaust_emission(direction: ExhaustDirection, state: bool) -> void:
 func loose_health() -> void:
 	health_bar.set_current_value(health_bar.current_value - 200)
 	if health_bar.current_value <= 0:
-		is_dead = true
+		death()
 
 func collect_energy() -> void:
 	energy_bar.set_current_value(energy_bar.current_value + 120)
@@ -173,3 +181,19 @@ func collect_energy() -> void:
 
 func consume_energy(amount: float) -> void:
 	energy_bar.set_current_value(energy_bar.current_value - amount)
+
+func death() -> void:
+	GlobalState.game_started = false
+	sprite.visible = false
+	explode()
+	await get_tree().create_timer(2.0).timeout
+	get_tree().reload_current_scene()
+
+func explode() -> void:
+	var explosion_clone = explosion.duplicate()
+	explosion_clone.emitting = true
+	var sfx_clone = explosion_clone.get_node("Sfx")
+	sfx_clone.volume_db = GlobalState.sfx_volume + EXPLOSION_GAIN
+	get_parent().add_child(explosion_clone)
+	explosion_clone.global_position = global_position
+	sfx_clone.play()
