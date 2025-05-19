@@ -7,8 +7,11 @@ const SPEED = 1000.0
 const GAIN = 12.0
 
 func _ready() -> void:
-	sfx.volume_db = GlobalState.sfx_volume + GAIN
-	sfx.play()
+	var sfx_clone = sfx.duplicate()
+	sfx_clone.volume_db = GlobalState.sfx_volume + GAIN
+	get_parent().add_child(sfx_clone)
+	sfx_clone.global_position = global_position
+	sfx_clone.play()
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation - PI / 2)

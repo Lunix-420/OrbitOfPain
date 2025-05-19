@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3eq3han4dkrp"]
+[gd_scene load_steps=8 format=3 uid="uid://b3eq3han4dkrp"]
 
 [ext_resource type="Script" uid="uid://d3tme3041lxtx" path="res://scripts/plasma.gd" id="1_qtutu"]
 [ext_resource type="AudioStream" uid="uid://uvpp0nit5kdw" path="res://sounds/plasma.mp3" id="2_oon8e"]
+[ext_resource type="Script" uid="uid://ckxwhcbgtcyih" path="res://scripts/projectile_sfx.gd" id="3_jat3u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq07p"]
-radius = 29.2062
+radius = 68.0074
 
 [sub_resource type="Gradient" id="Gradient_qtutu"]
 offsets = PackedFloat32Array(0, 0.344186, 0.665116, 1)
@@ -42,5 +43,7 @@ process_material = SubResource("ParticleProcessMaterial_oon8e")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_oon8e")
+script = ExtResource("3_jat3u")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
