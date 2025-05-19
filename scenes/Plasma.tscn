@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ckxwhcbgtcyih" path="res://scripts/projectile_sfx.gd" id="3_jat3u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq07p"]
-radius = 68.0074
+radius = 60.0083
 
 [sub_resource type="Gradient" id="Gradient_qtutu"]
 offsets = PackedFloat32Array(0, 0.344186, 0.665116, 1)

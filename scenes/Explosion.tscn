@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cgsi1mmd2w42i"]
+
+[node name="Explosion" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]

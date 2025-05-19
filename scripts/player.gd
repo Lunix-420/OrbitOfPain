@@ -7,12 +7,13 @@ const MAX_SPEED = 500
 const MAX_BACK_SPEED = 500
 const MAX_STRAVE_SPEED = 400
 const ACCELERATION = 2000.0
-const STRAVE_ACCELERATION = 1500.0
+const STRAVE_ACCELERATION = 4000.0
 const ROTATION_SPEED = 4.0
 const FRICTION = 500
 const ENERGY_LOSS = 1000
 const IDLE_ENERGY_CONSUMPTION = 20
 const ENERGY_AUDIO_GAIN = 0.0
+const EXHAUST_AUDIO_GAIN = 0.0
 
 @onready var sprite = get_node("Sprite")
 @onready var shooter = sprite.get_node("Shooter")
@@ -27,7 +28,11 @@ const ENERGY_AUDIO_GAIN = 0.0
 @onready var healthBar: BaseBar = gui.get_node("Health")
 @onready var energyBar: BaseBar = gui.get_node("Energy")
 @onready var energyAudio: AudioStreamPlayer2D = get_node("EnergyAudioPlayer") 
+@onready var exhaustAudio: AudioStreamPlayer2D = get_node("ExhaustAudioPlayer") 
 @export var plasma_scene: PackedScene
+
+func _ready() -> void:
+	exhaustAudio.volume_db = GlobalState.sfx_volume + EXHAUST_AUDIO_GAIN
 
 func _physics_process(delta: float) -> void:
 	if not GlobalState.game_started:
@@ -37,8 +42,20 @@ func _physics_process(delta: float) -> void:
 	handle_rotation(delta)
 	handle_shooting(delta)
 	handle_use_energ(IDLE_ENERGY_CONSUMPTION * delta)
+	handle_exhaust_audio()
 	move_and_slide()
-	
+
+func handle_exhaust_audio():
+	var is_back_emmiting = exhaustBackLeft.emitting || exhaustBackRight.emitting
+	var is_front_emmiting = exhaustFrontLeft.emitting || exhaustFrontRight.emitting
+	var is_side_emmiting = exhaustSideLeft.emitting || exhaustSideRight.emitting
+	var emmiting = is_back_emmiting || is_front_emmiting || is_side_emmiting
+	if emmiting:
+		if not exhaustAudio.playing:
+			exhaustAudio.play() 
+	else:
+		exhaustAudio.stop()
+		
 func loose_health():
 	healthBar.set_current_value(healthBar.current_value - 200)
 
