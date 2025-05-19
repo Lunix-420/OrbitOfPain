@@ -12,7 +12,7 @@ const ROTATION_SPEED = 4.0
 const FRICTION = 500
 const ENERGY_LOSS = 1000
 const IDLE_ENERGY_CONSUMPTION = 20
-
+const ENERGY_AUDIO_GAIN = 0.0
 
 @onready var sprite = get_node("Sprite")
 @onready var shooter = sprite.get_node("Shooter")
@@ -22,11 +22,11 @@ const IDLE_ENERGY_CONSUMPTION = 20
 @onready var exhaustSideRight = sprite.get_node("ExhaustSideRight")
 @onready var exhaustFrontLeft = sprite.get_node("ExhaustFrontLeft")
 @onready var exhaustFrontRight = sprite.get_node("ExhaustFrontRight")
-
 @onready var camera: Camera2D = get_node("Camera")
 @onready var gui: Control = camera.get_node("Gui")
 @onready var healthBar: BaseBar = gui.get_node("Health")
 @onready var energyBar: BaseBar = gui.get_node("Energy")
+@onready var energyAudio: AudioStreamPlayer2D = get_node("EnergyAudioPlayer") 
 @export var plasma_scene: PackedScene
 
 func _physics_process(delta: float) -> void:
@@ -44,6 +44,8 @@ func loose_health():
 
 func collect_energy():
 	energyBar.set_current_value(energyBar.current_value + 120)
+	energyAudio.volume_db = GlobalState.sfx_volume + ENERGY_AUDIO_GAIN
+	energyAudio.play()
 
 func handle_use_energ(amount: float):
 	energyBar.set_current_value(energyBar.current_value - amount)
