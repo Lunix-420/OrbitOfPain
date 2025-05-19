@@ -19,6 +19,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("lose_health"):
-		body.lose_health()
+	if body.has_method("loose_health"):
+		body.loose_health()
 	queue_free()
