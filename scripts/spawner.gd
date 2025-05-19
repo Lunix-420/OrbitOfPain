@@ -1,7 +1,8 @@
 extends Node2D
 
 var spawn_timer: float = 5.0
-var spawn_interval: float = 5.0
+var spawn_interval: float = 6.0
+var interval_change: float = 0.99
 var SPAWN_DISTANCE: float = 2000.0
 
 func _process(delta: float) -> void:
@@ -13,6 +14,7 @@ func _process(delta: float) -> void:
 		spawn_timer = 0.0
 
 func spawn_enemy() -> void:
+	spawn_interval *= interval_change
 	var spawn_point = get_spawn_point()
 	var enemy = preload("res://scenes/Enemy.tscn").instantiate()
 	enemy.position = spawn_point

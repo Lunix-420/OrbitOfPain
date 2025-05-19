@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
-var player: CharacterBody2D
+@onready var explosion: GPUParticles2D = get_node("Explosion")
 
+const EXPLOSION_GAIN: float = -0.0
+
+var player: CharacterBody2D
 var shoot_timer: float = -5.0
 
 func _ready():
@@ -25,6 +28,13 @@ func handle_shooting(delta: float):
 		shoot_timer = 0.0
 
 func take_damage() -> void:
+	var explosion_clone = explosion.duplicate()
+	explosion_clone.emitting = true
+	var sfx_clone = explosion_clone.get_node("Sfx")
+	sfx_clone.volume_db = GlobalState.sfx_volume + EXPLOSION_GAIN
+	get_parent().add_child(explosion_clone)
+	explosion_clone.global_position = global_position
+	sfx_clone.play()
 	spawn_energy()
 	queue_free()
 
