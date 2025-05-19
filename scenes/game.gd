@@ -1,11 +1,18 @@
 extends Node2D
 
+@onready var canvas_layer: CanvasLayer = get_node("CanvasLayer")
+@onready var main_menu: Node2D = canvas_layer.get_node("MainMenu")
+@onready var player: CharacterBody2D = get_node("Player")
+@onready var ambience: AudioStreamPlayer = get_node("Ambience")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	ambience.play()
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_start_button_pressed() -> void:
+	main_menu.visible = false
+	player.visible = true	
+	GlobalState.game_started = true
+	
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()

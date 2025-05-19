@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dd0r1cokjlsj3"]
+[gd_scene load_steps=12 format=3 uid="uid://dd0r1cokjlsj3"]
 
 [ext_resource type="Script" uid="uid://dswfduxi8a8du" path="res://scenes/game.gd" id="1_d1c63"]
 [ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/Player.tscn" id="1_kqs1s"]
 [ext_resource type="FontFile" uid="uid://dyej5eb8ymwwc" path="res://fonts/Silkscreen.ttf" id="2_32lhk"]
 [ext_resource type="StyleBox" uid="uid://dfbtt2bkedy5v" path="res://buttons/Default.tres" id="3_7g83o"]
+[ext_resource type="AudioStream" uid="uid://dkr6vtv5uglix" path="res://sounds/theme.ogg" id="5_1lgw5"]
 
 [sub_resource type="Environment" id="Environment_jeodi"]
 background_mode = 3
@@ -195,4 +196,10 @@ theme_override_styles/normal_mirrored = ExtResource("3_7g83o")
 theme_override_styles/normal = ExtResource("3_7g83o")
 text = "EXIT"
 
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1lgw5")
+volume_db = -12.0
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/StartButton" to="CanvasLayer/MainMenu" method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]
