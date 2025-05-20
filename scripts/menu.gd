@@ -11,7 +11,10 @@ func _on_start_button_pressed() -> void:
 	GlobalState.game_started = true
 	
 func _on_exit_button_pressed() -> void:
-	get_tree().quit()
+	if OS.has_feature("HTML5"):
+		JavaScriptBridge.eval("window.location.href = 'https://lunix420.itch.io/orbit-of-pain';")
+	else:
+		get_tree().quit()
 
 func _on_controls_button_pressed() -> void:
 	main_menu.visible = false

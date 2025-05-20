@@ -5,3 +5,14 @@ extends Node2D
 
 func _ready() -> void:
 	ambience.play()	
+	
+func _input(event):
+	if event.is_action_pressed("screenshot"):
+		take_screenshot()
+
+func take_screenshot():
+	var img = get_viewport().get_texture().get_image()
+	var timestamp = Time.get_datetime_string_from_system().replace(":", "-")
+	var path = "user://screenshot_%s.png" % timestamp
+	img.save_png(path)
+	print("Screenshot saved to:", path)
