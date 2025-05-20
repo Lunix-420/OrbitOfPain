@@ -35,10 +35,10 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1tnoa"]
 gradient = SubResource("Gradient_jeodi")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1tnoa"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1lgw5"]
 lifetime_randomness = 0.5
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(60, 60, 1)
+emission_shape_scale = Vector3(100, 100, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 angle_min = 1.07288e-05
@@ -80,14 +80,6 @@ offset_right = 3050.0
 offset_bottom = 3050.0
 texture = SubResource("NoiseTexture2D_0uv0p")
 
-[node name="StarPaticles" type="GPUParticles2D" parent="."]
-material = SubResource("ShaderMaterial_jeodi")
-scale = Vector2(50, 50)
-amount = 5000
-lifetime = 3.0
-fixed_fps = 15
-process_material = SubResource("ParticleProcessMaterial_1tnoa")
-
 [node name="Player" parent="." instance=ExtResource("1_kqs1s")]
 visible = false
 self_modulate = Color(0, 0, 0, 1)
@@ -97,7 +89,346 @@ z_index = 10
 [node name="Border" parent="." instance=ExtResource("3_b3faq")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_1lgw5")]
+visible = false
+
+[node name="Col1" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-2500, -2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col2" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-1500, -2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col3" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-500, -2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col4" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(500, -2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col5" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(1500, -2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col6" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(2500, -2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col7" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-2500, -1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col8" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-1500, -1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col9" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-500, -1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col10" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(500, -1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col11" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(1500, -1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col12" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(2500, -1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col13" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-2500, -500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col14" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-1500, -500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col15" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-500, -500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col16" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(500, -500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col17" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(1500, -500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col18" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(2500, -500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col19" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-2500, 500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col20" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-1500, 500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col21" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-500, 500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col22" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(500, 500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col23" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(1500, 500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col24" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(2500, 500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col25" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-2500, 1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col26" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-1500, 1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col27" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-500, 1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col28" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(500, 1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col29" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(1500, 1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col30" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(2500, 1500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col31" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-2500, 2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col32" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-1500, 2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col33" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(-500, 2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col34" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(500, 2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col35" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(1500, 2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
+
+[node name="Col36" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jeodi")
+position = Vector2(2500, 2500)
+scale = Vector2(5, 5)
+amount = 100
+lifetime = 3.0
+fixed_fps = 10
+process_material = SubResource("ParticleProcessMaterial_1lgw5")
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1lgw5")
 volume_db = -12.0
+
+[node name="ParticleCullingGrid" type="Node" parent="."]
+
+[node name="Row1" type="Node" parent="ParticleCullingGrid"]
+
+[node name="Row2" type="Node" parent="ParticleCullingGrid"]
+
+[node name="Row3" type="Node" parent="ParticleCullingGrid"]
+
+[node name="Row4" type="Node" parent="ParticleCullingGrid"]
+
+[node name="Row5" type="Node" parent="ParticleCullingGrid"]
+
+[node name="Row6" type="Node" parent="ParticleCullingGrid"]
