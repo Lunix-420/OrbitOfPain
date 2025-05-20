@@ -183,7 +183,7 @@ func death() -> void:
 	GlobalState.game_started = false
 	sprite.visible = false
 	await get_tree().create_timer(2.0).timeout
-	get_tree().reload_current_scene()
+	await get_tree().reload_current_scene()
 
 func explode() -> void:
 	if not GlobalState.game_started:

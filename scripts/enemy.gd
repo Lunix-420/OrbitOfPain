@@ -14,7 +14,7 @@ const SPEED = 10000.0
 const ATTACK_TIMEOUT = 1.5
 
 #==================================================================================================#
-# Audio & Explosion Config
+# Audio Config
 
 const EXPLOSION_GAIN: float = 0.0
 
