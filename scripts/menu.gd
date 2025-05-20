@@ -23,7 +23,6 @@ func _on_exit_help_button_pressed() -> void:
 	help_menu.visible = false
 	credits_menu.visible = false
 
-
 func _on_exit_credits_button_pressed() -> void:
 	main_menu.visible = true
 	help_menu.visible = false

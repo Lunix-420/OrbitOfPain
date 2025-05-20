@@ -26,9 +26,13 @@ const ROTATE_SPEED = 4.0
 const FRICTION = 500.0
 
 #==================================================================================================#
-# Energy Config
+# Energy & Health Config
+
 const BASE_ENERGY_DRAIN = 20.0
-const ENERGY_LOSS = 1000.0
+const ENERGY_LOSS = 2000.0
+const ENERGY_PICKUP_STRENGTH = 200
+const WEAPON_COST = 40
+const ENEMY_DAMAGE = 150.0
 
 #==================================================================================================#
 # Audio Config
@@ -136,6 +140,7 @@ func _process_rotation(delta: float) -> void:
 
 func _process_shooting() -> void:
 	if Input.is_action_just_pressed("action_shoot"):
+		consume_energy(WEAPON_COST)
 		var plasma = plasma_scene.instantiate()
 		var dir = -sprite.global_transform.x.normalized()
 		plasma.rotation = dir.angle()
@@ -173,24 +178,26 @@ func _set_exhaust_emission(direction: ExhaustDirection, state: bool) -> void:
 # Health & Energy 
 
 func loose_health() -> void:
-	health_bar.set_current_value(health_bar.current_value - 150)
+	health_bar.set_current_value(health_bar.current_value - ENEMY_DAMAGE)
 	if health_bar.current_value <= 0:
 		death()
 	else:
 		damage_audio.play()
 
 func collect_energy() -> void:
-	energy_bar.set_current_value(energy_bar.current_value + 120)
+	energy_bar.set_current_value(energy_bar.current_value + ENERGY_PICKUP_STRENGTH)
 	energy_audio.volume_db = GlobalState.sfx_volume + ENERGY_AUDIO_GAIN_DB
 	energy_audio.play()
 
 func consume_energy(amount: float) -> void:
 	energy_bar.set_current_value(energy_bar.current_value - amount)
+	if energy_bar.current_value <= 0:
+		death()
 
 func death() -> void:
+	explode()
 	GlobalState.game_started = false
 	sprite.visible = false
-	explode()
 	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
 
