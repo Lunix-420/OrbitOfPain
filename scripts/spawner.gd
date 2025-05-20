@@ -1,9 +1,19 @@
 extends Node2D
 
+#==================================================================================================#
+# State Variables
+
 var spawn_timer: float = 5.0
 var spawn_interval: float = 6.0
 var interval_change: float = 0.99
-var SPAWN_DISTANCE: float = 2000.0
+
+#==================================================================================================#
+# Config
+
+const SPAWN_DISTANCE: float = 2000.0
+
+#==================================================================================================#
+# Main Behaviors
 
 func _process(delta: float) -> void:
 	if not GlobalState.game_started:

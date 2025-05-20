@@ -1,10 +1,20 @@
 extends Area2D
 
+#==================================================================================================#
+# Nodes
 @onready var sfx: AudioStreamPlayer2D = get_node("AudioStreamPlayer2D")
+
+#==================================================================================================#
+# State Variables
 var init_speed = 0
 
+#==================================================================================================#
+# Config
 const SPEED = 1000.0
 const GAIN = 6.0
+
+#==================================================================================================#
+# Main Behaviors
 
 func _ready() -> void:
 	var sfx_clone = sfx.duplicate()
@@ -16,7 +26,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation - PI / 2)
 	position += direction * (SPEED + init_speed) * delta
-
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("loose_health"):

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 #==================================================================================================#
 # Enums
+
 enum ExhaustDirection {
 	Front,
 	Back,
@@ -11,12 +12,14 @@ enum ExhaustDirection {
 
 #==================================================================================================#
 # State Variables
+
 var is_dead: bool = false
 var forward_speed: float = 0.0
 var strafe_speed: float = 0.0
 
 #==================================================================================================#
 # Movement Config
+
 const MAX_FORWARD_SPEED = 500.0
 const MAX_BACKWARD_SPEED = 500.0
 const MAX_STRAFE_SPEED = 400.0
@@ -36,6 +39,7 @@ const ENEMY_DAMAGE = 150.0
 
 #==================================================================================================#
 # Audio Config
+
 const ENERGY_AUDIO_GAIN_DB = 0.0
 const EXHAUST_AUDIO_GAIN_DB = -3.0
 const EXPLOSION_GAIN = 6.0
@@ -43,6 +47,7 @@ const DAMAGE_GAIN = 0.0
 
 #==================================================================================================#
 # Nodes 
+
 @onready var sprite = get_node("Sprite")
 @onready var shooter = sprite.get_node("Shooter")
 @onready var exhaust_back_left = sprite.get_node("ExhaustBackLeft")
@@ -82,45 +87,18 @@ func _physics_process(delta: float) -> void:
 # Movement
 
 func _process_movement(delta: float) -> void:
-	handle_forward_backward(delta)
-	handle_strafing(delta)
-
-func handle_forward_backward(delta: float) -> void:
-	if Input.is_action_pressed("move_forward") and not Input.is_action_pressed("move_backwards"):
-		forward_speed += FORWARD_ACCEL * delta
-		forward_speed = min(forward_speed, MAX_FORWARD_SPEED)
-		_set_exhaust_emission(ExhaustDirection.Front, false)
-		_set_exhaust_emission(ExhaustDirection.Back, true)
-	elif Input.is_action_pressed("move_backwards") and not Input.is_action_pressed("move_forward"):
-		forward_speed -= FORWARD_ACCEL * delta
-		forward_speed = max(forward_speed, -MAX_BACKWARD_SPEED)
-		_set_exhaust_emission(ExhaustDirection.Front, true)
-		_set_exhaust_emission(ExhaustDirection.Back, false)
-	else:
-		_set_exhaust_emission(ExhaustDirection.Front, false)
-		_set_exhaust_emission(ExhaustDirection.Back, false)
+	var forward_input = int(Input.is_action_pressed("move_forward")) - int(Input.is_action_pressed("move_backwards"))
+	var strafe_input = int(Input.is_action_pressed("move_left")) - int(Input.is_action_pressed("move_right"))
+	forward_speed = clamp(forward_speed + FORWARD_ACCEL * forward_input * delta, -MAX_BACKWARD_SPEED, MAX_FORWARD_SPEED)
+	strafe_speed = clamp(strafe_speed + STRAFE_ACCEL * strafe_input * delta, -MAX_STRAFE_SPEED, MAX_STRAFE_SPEED)
+	if forward_input == 0:
 		forward_speed = _apply_friction(forward_speed, delta)
-
+	if strafe_input == 0:
+		strafe_speed = _apply_friction(strafe_speed, delta)	
 	var forward_dir = sprite.global_transform.y.normalized()
-	position += forward_dir * forward_speed * delta
-
-func handle_strafing(delta: float) -> void:
-	if Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right"):
-		strafe_speed += STRAFE_ACCEL * delta
-		strafe_speed = min(strafe_speed, MAX_STRAFE_SPEED)
-		_set_exhaust_emission(ExhaustDirection.Left, false)
-		_set_exhaust_emission(ExhaustDirection.Right, true)
-	elif Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left"):
-		strafe_speed -= STRAFE_ACCEL * delta
-		strafe_speed = max(strafe_speed, -MAX_STRAFE_SPEED)
-		_set_exhaust_emission(ExhaustDirection.Left, true)
-		_set_exhaust_emission(ExhaustDirection.Right, false)
-	else:
-		_set_exhaust_emission(ExhaustDirection.Left, false)
-		_set_exhaust_emission(ExhaustDirection.Right, false)
-		strafe_speed = _apply_friction(strafe_speed, delta)
 	var right_dir = sprite.global_transform.x.normalized()
-	position += right_dir * strafe_speed * delta
+	velocity = forward_dir * forward_speed + right_dir * strafe_speed	
+	_update_exhaust_emission(forward_input, strafe_input)
 
 func _apply_friction(value: float, delta: float) -> float:
 	if value > 0:
@@ -149,17 +127,13 @@ func _process_shooting() -> void:
 		get_tree().current_scene.add_child(plasma)
 
 #==================================================================================================#
-# Exhaust & Audio
+# Exhaust
 
-func update_exhaust_audio() -> void:
-	var is_emitting = exhaust_back_left.emitting or exhaust_back_right.emitting \
-		or exhaust_front_left.emitting or exhaust_front_right.emitting \
-		or exhaust_side_left.emitting or exhaust_side_right.emitting
-
-	if is_emitting and not exhaust_audio.playing:
-		exhaust_audio.play()
-	elif not is_emitting and exhaust_audio.playing:
-		exhaust_audio.stop()
+func _update_exhaust_emission(forward_input: int, strafe_input: int) -> void:
+	_set_exhaust_emission(ExhaustDirection.Front, forward_input < 0)
+	_set_exhaust_emission(ExhaustDirection.Back, forward_input > 0)
+	_set_exhaust_emission(ExhaustDirection.Left, strafe_input < 0)
+	_set_exhaust_emission(ExhaustDirection.Right, strafe_input > 0)
 
 func _set_exhaust_emission(direction: ExhaustDirection, state: bool) -> void:
 	match direction:
@@ -173,6 +147,16 @@ func _set_exhaust_emission(direction: ExhaustDirection, state: bool) -> void:
 			exhaust_side_left.emitting = state
 		ExhaustDirection.Right:
 			exhaust_side_right.emitting = state
+
+func update_exhaust_audio() -> void:
+	var is_emitting = exhaust_back_left.emitting or exhaust_back_right.emitting \
+		or exhaust_front_left.emitting or exhaust_front_right.emitting \
+		or exhaust_side_left.emitting or exhaust_side_right.emitting
+
+	if is_emitting and not exhaust_audio.playing:
+		exhaust_audio.play()
+	elif not is_emitting and exhaust_audio.playing:
+		exhaust_audio.stop()
 	
 #==================================================================================================#
 # Health & Energy 

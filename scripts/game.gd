@@ -1,14 +1,23 @@
 extends Node2D
 
+#==================================================================================================#
+# Nodes
+
 @onready var player: CharacterBody2D = get_node("Player")
 @onready var ambience: AudioStreamPlayer = get_node("Ambience")
 
+#==================================================================================================#
+# Main Behaviors
+
 func _ready() -> void:
-	ambience.play()	
-	
+	ambience.play()
+
 func _input(event):
 	if event.is_action_pressed("screenshot"):
 		take_screenshot()
+
+#==================================================================================================#
+# Screenshot
 
 func take_screenshot():
 	var img = get_viewport().get_texture().get_image()
