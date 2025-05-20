@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://2q1cx7u0opul"]
+[gd_scene load_steps=8 format=3 uid="uid://2q1cx7u0opul"]
 
 [ext_resource type="Script" uid="uid://bslhr1fgsxswa" path="res://scripts/menu.gd" id="1_jmdev"]
 [ext_resource type="FontFile" uid="uid://dyej5eb8ymwwc" path="res://fonts/Silkscreen.ttf" id="1_o0tnf"]
 [ext_resource type="StyleBox" uid="uid://dfbtt2bkedy5v" path="res://buttons/Default.tres" id="2_jmdev"]
 [ext_resource type="Texture2D" uid="uid://dw0rxjtsnhb35" path="res://images/Goal.png" id="3_b6cxs"]
 [ext_resource type="Texture2D" uid="uid://bnd1x6mph8eai" path="res://images/Control.png" id="4_aaywf"]
+[ext_resource type="Texture2D" uid="uid://b4snlk72n0bsb" path="res://images/Credits.png" id="6_b6cxs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1c63"]
 bg_color = Color(0.792317, 0.789104, 0.893934, 0.568627)
@@ -24,6 +25,7 @@ follow_viewport_enabled = true
 script = ExtResource("1_jmdev")
 
 [node name="MainMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Logo" type="Button" parent="MainMenu"]
 offset_left = -1700.0
@@ -224,7 +226,78 @@ position = Vector2(-931, 118)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_aaywf")
 
+[node name="CreditsMenu" type="Node2D" parent="."]
+
+[node name="Logo" type="Button" parent="CreditsMenu"]
+offset_left = -1700.0
+offset_top = -900.0
+offset_right = 1700.0
+offset_bottom = -300.0
+scale = Vector2(0.998365, 0.663756)
+theme_override_fonts/font = ExtResource("1_o0tnf")
+theme_override_font_sizes/font_size = 330
+theme_override_styles/focus = ExtResource("2_jmdev")
+theme_override_styles/disabled_mirrored = ExtResource("2_jmdev")
+theme_override_styles/disabled = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed = ExtResource("2_jmdev")
+theme_override_styles/hover_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover = ExtResource("2_jmdev")
+theme_override_styles/pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/pressed = ExtResource("2_jmdev")
+theme_override_styles/normal_mirrored = ExtResource("2_jmdev")
+theme_override_styles/normal = ExtResource("2_jmdev")
+text = "ORBIT OF PAIN"
+
+[node name="ExitCreditsButton" type="Button" parent="CreditsMenu"]
+offset_left = -1700.0
+offset_top = 700.0
+offset_right = -831.0
+offset_bottom = 1100.0
+scale = Vector2(0.998365, 0.663756)
+theme_override_fonts/font = ExtResource("1_o0tnf")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/focus = ExtResource("2_jmdev")
+theme_override_styles/disabled_mirrored = ExtResource("2_jmdev")
+theme_override_styles/disabled = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed = ExtResource("2_jmdev")
+theme_override_styles/hover_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d1c63")
+theme_override_styles/pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/pressed = ExtResource("2_jmdev")
+theme_override_styles/normal_mirrored = ExtResource("2_jmdev")
+theme_override_styles/normal = ExtResource("2_jmdev")
+text = "BACK"
+
+[node name="Panel" type="Button" parent="CreditsMenu"]
+offset_left = -800.0
+offset_top = -400.0
+offset_right = 800.0
+offset_bottom = 1650.0
+scale = Vector2(0.998365, 0.663756)
+theme_override_fonts/font = ExtResource("1_o0tnf")
+theme_override_font_sizes/font_size = 330
+theme_override_styles/focus = ExtResource("2_jmdev")
+theme_override_styles/disabled_mirrored = ExtResource("2_jmdev")
+theme_override_styles/disabled = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed = ExtResource("2_jmdev")
+theme_override_styles/hover_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover = ExtResource("2_jmdev")
+theme_override_styles/pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/pressed = ExtResource("2_jmdev")
+theme_override_styles/normal_mirrored = ExtResource("2_jmdev")
+theme_override_styles/normal = ExtResource("2_jmdev")
+
+[node name="Credits" type="Sprite2D" parent="CreditsMenu"]
+position = Vector2(6, 279)
+scale = Vector2(0.529024, 0.529024)
+texture = ExtResource("6_b6cxs")
+
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="MainMenu/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="HelpMenu/ExitHelpButton" to="." method="_on_exit_help_button_pressed"]
+[connection signal="pressed" from="CreditsMenu/ExitCreditsButton" to="." method="_on_exit_credits_button_pressed"]
