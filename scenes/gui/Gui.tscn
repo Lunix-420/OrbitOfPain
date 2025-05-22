@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://m1cjpvkoeugn"]
 
-[ext_resource type="PackedScene" uid="uid://q1u3xbpcw0ru" path="res://scenes/HealthBar.tscn" id="1_cyl48"]
-[ext_resource type="PackedScene" uid="uid://c06tktomgy1l2" path="res://scenes/EnergyBar.tscn" id="3_wwu88"]
+[ext_resource type="PackedScene" uid="uid://q1u3xbpcw0ru" path="res://scenes/gui/HealthBar.tscn" id="1_cyl48"]
+[ext_resource type="PackedScene" uid="uid://c06tktomgy1l2" path="res://scenes/gui/EnergyBar.tscn" id="3_wwu88"]
 
 [sub_resource type="GDScript" id="GDScript_baflc"]
 script/source = "extends Control

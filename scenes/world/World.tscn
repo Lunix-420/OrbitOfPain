@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://dd0r1cokjlsj3"]
 
 [ext_resource type="Script" uid="uid://dswfduxi8a8du" path="res://scripts/game.gd" id="1_d1c63"]
-[ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/Player.tscn" id="1_kqs1s"]
-[ext_resource type="PackedScene" uid="uid://dst87herimqhf" path="res://scenes/Borders.tscn" id="3_b3faq"]
-[ext_resource type="PackedScene" uid="uid://2q1cx7u0opul" path="res://scenes/Menu.tscn" id="4_1lgw5"]
+[ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/ships/Player.tscn" id="1_kqs1s"]
+[ext_resource type="PackedScene" uid="uid://dst87herimqhf" path="res://scenes/world/Borders.tscn" id="3_b3faq"]
+[ext_resource type="PackedScene" uid="uid://2q1cx7u0opul" path="res://scenes/gui/Menu.tscn" id="4_1lgw5"]
 [ext_resource type="AudioStream" uid="uid://dkr6vtv5uglix" path="res://sounds/theme.ogg" id="5_1lgw5"]
 
 [sub_resource type="Environment" id="Environment_jeodi"]

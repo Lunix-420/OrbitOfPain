@@ -22,6 +22,8 @@ const EXPLOSION_GAIN: float = 0.0
 # Nodes
 
 @onready var explosion: GPUParticles2D = get_node("Explosion")
+@export var energy_scene: PackedScene
+@export var laser_scene: PackedScene
 
 #==================================================================================================#
 # Main Behaviors
@@ -47,7 +49,7 @@ func _process_movement_and_attack(delta: float) -> void:
 func _process_shooting(delta: float) -> void:
 	shoot_timer += delta
 	if shoot_timer >= ATTACK_TIMEOUT:
-		var laser = preload("res://scenes/Laser.tscn").instantiate()
+		var laser = laser_scene.instantiate()
 		laser.rotation = rotation
 		laser.position = global_position
 		get_tree().current_scene.add_child(laser)
@@ -74,6 +76,6 @@ func _explode() -> void:
 	sfx_clone.play()
 
 func spawn_energy() -> void:
-	var energy = preload("res://scenes/Energy.tscn").instantiate()
+	var energy = energy_scene.instantiate()
 	energy.position = global_position
 	get_tree().current_scene.add_child(energy)

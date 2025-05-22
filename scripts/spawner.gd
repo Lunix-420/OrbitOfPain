@@ -13,6 +13,11 @@ var interval_change: float = 0.99
 const SPAWN_DISTANCE: float = 2000.0
 
 #==================================================================================================#
+# Nodes
+
+@export var enemy_scene: PackedScene
+
+#==================================================================================================#
 # Main Behaviors
 
 func _process(delta: float) -> void:
@@ -26,7 +31,7 @@ func _process(delta: float) -> void:
 func spawn_enemy() -> void:
 	spawn_interval *= interval_change
 	var spawn_point = get_spawn_point()
-	var enemy = preload("res://scenes/Enemy.tscn").instantiate()
+	var enemy = enemy_scene.instantiate()
 	enemy.position = spawn_point
 	get_tree().current_scene.add_child(enemy)
 

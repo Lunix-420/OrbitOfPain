@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://71rc8k32st6a"]
+[gd_scene load_steps=15 format=3 uid="uid://71rc8k32st6a"]
 
 [ext_resource type="Script" uid="uid://cged4wdm7o1j0" path="res://scripts/player.gd" id="1_qm0ti"]
 [ext_resource type="Texture2D" uid="uid://ceomkl5mknhy0" path="res://ships/03.png" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://b3eq3han4dkrp" path="res://scenes/Plasma.tscn" id="2_qu4a1"]
+[ext_resource type="PackedScene" uid="uid://b3eq3han4dkrp" path="res://scenes/projectiles/Plasma.tscn" id="2_qu4a1"]
 [ext_resource type="Script" uid="uid://bkne57gikkxc6" path="res://scripts/spawner.gd" id="3_3li8b"]
-[ext_resource type="PackedScene" uid="uid://m1cjpvkoeugn" path="res://scenes/Gui.tscn" id="4_mdl7e"]
+[ext_resource type="PackedScene" uid="uid://m1cjpvkoeugn" path="res://scenes/gui/Gui.tscn" id="4_mdl7e"]
+[ext_resource type="PackedScene" uid="uid://dq44tpy22jtkp" path="res://scenes/ships/Enemy.tscn" id="5_w73tk"]
 [ext_resource type="AudioStream" uid="uid://cwrti7833ut7u" path="res://sounds/energy.mp3" id="6_70d11"]
 [ext_resource type="AudioStream" uid="uid://c2xspvdxljwqv" path="res://sounds/exhaust.ogg" id="7_cw2d6"]
 [ext_resource type="AudioStream" uid="uid://l1uirt0tkejx" path="res://sounds/damage.mp3" id="8_bruh7"]
-[ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/Explosion.tscn" id="8_khinc"]
+[ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="8_khinc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4a1"]
 radius = 49.0
@@ -134,6 +135,7 @@ process_material = SubResource("ParticleProcessMaterial_g2els")
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(-23, -5)
 script = ExtResource("3_3li8b")
+enemy_scene = ExtResource("5_w73tk")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(-23, -5)
