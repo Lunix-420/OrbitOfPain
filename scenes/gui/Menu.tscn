@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://2q1cx7u0opul"]
+[gd_scene load_steps=17 format=3 uid="uid://2q1cx7u0opul"]
 
 [ext_resource type="Script" uid="uid://bslhr1fgsxswa" path="res://scripts/menu.gd" id="1_jmdev"]
 [ext_resource type="FontFile" uid="uid://dyej5eb8ymwwc" path="res://fonts/Silkscreen.ttf" id="1_o0tnf"]
@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://bnd1x6mph8eai" path="res://images/Control.png" id="4_aaywf"]
 [ext_resource type="Texture2D" uid="uid://b4snlk72n0bsb" path="res://images/Credits.png" id="6_b6cxs"]
 [ext_resource type="PackedScene" uid="uid://dc3paffttkbn7" path="res://scenes/gui/Upgrade.tscn" id="7_tpkl3"]
+[ext_resource type="Texture2D" uid="uid://c0bb3i1a2q3l3" path="res://icons/health-increase.svg" id="8_nhlbb"]
+[ext_resource type="Texture2D" uid="uid://cq0qlri0yw0y7" path="res://icons/shield-plus.svg" id="9_pvmco"]
+[ext_resource type="Texture2D" uid="uid://b6t27stq7v6x8" path="res://icons/teleport.svg" id="10_uvvsa"]
+[ext_resource type="Texture2D" uid="uid://bcq5pata7m8li" path="res://icons/battery-charge.svg" id="11_sd0b1"]
+[ext_resource type="Texture2D" uid="uid://c1qwmprpxu5l" path="res://icons/magnet.svg" id="12_qdqju"]
+[ext_resource type="Texture2D" uid="uid://di5gf15k248xi" path="res://icons/rocket.svg" id="13_hhrls"]
+[ext_resource type="Texture2D" uid="uid://7ci350lpy57h" path="res://icons/dash.svg" id="14_ajccn"]
+[ext_resource type="Texture2D" uid="uid://u0os0egfuw3f" path="res://icons/speed.svg" id="15_641h1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1c63"]
 bg_color = Color(0.792317, 0.789104, 0.893934, 0.568627)
@@ -299,21 +307,94 @@ texture = ExtResource("6_b6cxs")
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Upgrade" parent="." instance=ExtResource("7_tpkl3")]
-offset_left = -771.0
-offset_top = 175.0
-offset_right = -771.0
-offset_bottom = 175.0
-title_string = "Title 1"
-text_string = "String 1"
+[node name="Node2D" type="Node2D" parent="Node2D"]
+position = Vector2(0, 380)
 
-[node name="Upgrade2" parent="." instance=ExtResource("7_tpkl3")]
-offset_left = -763.0
-offset_top = 473.0
-offset_right = -763.0
-offset_bottom = 473.0
-title_string = "String 2"
-text_string = "String 2"
+[node name="Health" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = -1550.0
+offset_right = -1550.0
+offset_bottom = 0.0
+title_string = "Health Boost"
+text_string = "Doubles maximum amount of HP from 100 to 200"
+icon_texture = ExtResource("8_nhlbb")
+perk = "health"
+metadata/_edit_use_anchors_ = true
+
+[node name="Shield" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = 50.0
+offset_right = 50.0
+offset_bottom = 0.0
+title_string = "Energy Shield"
+text_string = "Press CTRL to block damage while continuously loosing energy"
+icon_texture = ExtResource("9_pvmco")
+perk = "shield"
+metadata/_edit_use_anchors_ = true
+
+[node name="Teleport" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = -1550.0
+offset_top = -350.0
+offset_right = -1550.0
+offset_bottom = -350.0
+title_string = "Teleport"
+text_string = "Press space to teleport towards mouse"
+icon_texture = ExtResource("10_uvvsa")
+perk = "teleport"
+metadata/_edit_use_anchors_ = true
+
+[node name="Battery" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = 50.0
+offset_top = -350.0
+offset_right = 50.0
+offset_bottom = -350.0
+title_string = "Extra Battery"
+text_string = "Increase maximum energy charge from 100 to 200"
+icon_texture = ExtResource("11_sd0b1")
+perk = "battery"
+metadata/_edit_use_anchors_ = true
+
+[node name="Magnet" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = -1550.0
+offset_top = -700.0
+offset_right = -1550.0
+offset_bottom = -700.0
+title_string = "Magnet"
+text_string = "Attracts enemy drops and pulls them towards you"
+icon_texture = ExtResource("12_qdqju")
+perk = "health"
+metadata/_edit_use_anchors_ = true
+
+[node name="Rocket" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = 50.0
+offset_top = -700.0
+offset_right = 50.0
+offset_bottom = -700.0
+title_string = "Rocket Launcher"
+text_string = "Press CTRL to shoot rockets"
+icon_texture = ExtResource("13_hhrls")
+perk = "rockets"
+metadata/_edit_use_anchors_ = true
+
+[node name="Dash" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = -1550.0
+offset_top = -1050.0
+offset_right = -1550.0
+offset_bottom = -1050.0
+title_string = "Dash"
+text_string = "Hold SHIFT to triple movement speed"
+icon_texture = ExtResource("14_ajccn")
+perk = "health"
+metadata/_edit_use_anchors_ = true
+
+[node name="Speed" parent="Node2D/Node2D" instance=ExtResource("7_tpkl3")]
+offset_left = 50.0
+offset_top = -1050.0
+offset_right = 50.0
+offset_bottom = -1050.0
+title_string = "Speed Boost"
+text_string = "Permanently increases base movement speed from 100 to 150"
+icon_texture = ExtResource("15_641h1")
+perk = "speed"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/ControlsButton" to="." method="_on_controls_button_pressed"]
