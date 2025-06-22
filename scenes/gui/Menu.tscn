@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://2q1cx7u0opul"]
+[gd_scene load_steps=19 format=3 uid="uid://2q1cx7u0opul"]
 
 [ext_resource type="Script" uid="uid://bslhr1fgsxswa" path="res://scripts/menu.gd" id="1_jmdev"]
 [ext_resource type="FontFile" uid="uid://dyej5eb8ymwwc" path="res://fonts/Silkscreen.ttf" id="1_o0tnf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bnd1x6mph8eai" path="res://images/Control.png" id="4_aaywf"]
 [ext_resource type="Texture2D" uid="uid://b4snlk72n0bsb" path="res://images/Credits.png" id="6_b6cxs"]
 [ext_resource type="PackedScene" uid="uid://dc3paffttkbn7" path="res://scenes/gui/Upgrade.tscn" id="7_tpkl3"]
+[ext_resource type="PackedScene" uid="uid://b7hv5cuvwf71g" path="res://scenes/gui/Skillpoints.tscn" id="7_v57io"]
 [ext_resource type="Texture2D" uid="uid://c0bb3i1a2q3l3" path="res://icons/health-increase.svg" id="8_nhlbb"]
 [ext_resource type="Texture2D" uid="uid://cq0qlri0yw0y7" path="res://icons/shield-plus.svg" id="9_pvmco"]
 [ext_resource type="Texture2D" uid="uid://b6t27stq7v6x8" path="res://icons/teleport.svg" id="10_uvvsa"]
@@ -17,6 +18,19 @@
 [ext_resource type="Texture2D" uid="uid://u0os0egfuw3f" path="res://icons/speed.svg" id="15_641h1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1c63"]
+bg_color = Color(0.792317, 0.789104, 0.893934, 0.568627)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v57io"]
 bg_color = Color(0.792317, 0.789104, 0.893934, 0.568627)
 border_width_left = 10
 border_width_top = 10
@@ -306,6 +320,49 @@ scale = Vector2(0.529024, 0.529024)
 texture = ExtResource("6_b6cxs")
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="Skillpoints" parent="Node2D" instance=ExtResource("7_v57io")]
+position = Vector2(-1000, 730)
+
+[node name="Button" type="Button" parent="Node2D"]
+offset_left = -600.0
+offset_top = -920.0
+offset_right = 600.0
+offset_bottom = -720.0
+theme_override_fonts/font = ExtResource("1_o0tnf")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("2_jmdev")
+theme_override_styles/disabled_mirrored = ExtResource("2_jmdev")
+theme_override_styles/disabled = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed = ExtResource("2_jmdev")
+theme_override_styles/hover_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover = ExtResource("2_jmdev")
+theme_override_styles/pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/pressed = ExtResource("2_jmdev")
+theme_override_styles/normal_mirrored = ExtResource("2_jmdev")
+theme_override_styles/normal = ExtResource("2_jmdev")
+text = "Buy Upgrades"
+
+[node name="Button2" type="Button" parent="Node2D"]
+offset_left = 1000.0
+offset_top = -920.0
+offset_right = 1550.0
+offset_bottom = -720.0
+theme_override_fonts/font = ExtResource("1_o0tnf")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("2_jmdev")
+theme_override_styles/disabled_mirrored = ExtResource("2_jmdev")
+theme_override_styles/disabled = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover_pressed = ExtResource("2_jmdev")
+theme_override_styles/hover_mirrored = ExtResource("2_jmdev")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v57io")
+theme_override_styles/pressed_mirrored = ExtResource("2_jmdev")
+theme_override_styles/pressed = ExtResource("2_jmdev")
+theme_override_styles/normal_mirrored = ExtResource("2_jmdev")
+theme_override_styles/normal = ExtResource("2_jmdev")
+text = "Close"
 
 [node name="Node2D" type="Node2D" parent="Node2D"]
 position = Vector2(0, 380)
