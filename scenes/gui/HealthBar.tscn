@@ -17,10 +17,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tmb1u")
-top_bar = NodePath("TopHealthBar")
-bottom_bar = NodePath("ButtomHealthBar")
 max_value = 1000.0
 current_value = 1000.0
+top_bar = NodePath("TopHealthBar")
+bottom_bar = NodePath("ButtomHealthBar")
 
 [node name="ButtomHealthBar" type="ProgressBar" parent="."]
 layout_mode = 0

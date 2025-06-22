@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://2q1cx7u0opul"]
+[gd_scene load_steps=9 format=3 uid="uid://2q1cx7u0opul"]
 
 [ext_resource type="Script" uid="uid://bslhr1fgsxswa" path="res://scripts/menu.gd" id="1_jmdev"]
 [ext_resource type="FontFile" uid="uid://dyej5eb8ymwwc" path="res://fonts/Silkscreen.ttf" id="1_o0tnf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dw0rxjtsnhb35" path="res://images/Goal.png" id="3_b6cxs"]
 [ext_resource type="Texture2D" uid="uid://bnd1x6mph8eai" path="res://images/Control.png" id="4_aaywf"]
 [ext_resource type="Texture2D" uid="uid://b4snlk72n0bsb" path="res://images/Credits.png" id="6_b6cxs"]
+[ext_resource type="PackedScene" uid="uid://dc3paffttkbn7" path="res://scenes/gui/Upgrade.tscn" id="7_tpkl3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1c63"]
 bg_color = Color(0.792317, 0.789104, 0.893934, 0.568627)
@@ -25,6 +26,7 @@ follow_viewport_enabled = true
 script = ExtResource("1_jmdev")
 
 [node name="MainMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Logo" type="Button" parent="MainMenu"]
 offset_left = -1700.0
@@ -294,6 +296,24 @@ theme_override_styles/normal = ExtResource("2_jmdev")
 position = Vector2(6, 279)
 scale = Vector2(0.529024, 0.529024)
 texture = ExtResource("6_b6cxs")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Upgrade" parent="." instance=ExtResource("7_tpkl3")]
+offset_left = -771.0
+offset_top = 175.0
+offset_right = -771.0
+offset_bottom = 175.0
+title_string = "Title 1"
+text_string = "String 1"
+
+[node name="Upgrade2" parent="." instance=ExtResource("7_tpkl3")]
+offset_left = -763.0
+offset_top = 473.0
+offset_right = -763.0
+offset_bottom = 473.0
+title_string = "String 2"
+text_string = "String 2"
 
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/ControlsButton" to="." method="_on_controls_button_pressed"]
