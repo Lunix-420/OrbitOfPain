@@ -162,7 +162,11 @@ func update_exhaust_audio() -> void:
 # Health & Energy 
 
 func loose_health() -> void:
-	health_bar.set_current_value(health_bar.current_value - ENEMY_DAMAGE)
+	var multiplier = 1.0
+	if (GlobalState.perks["health"]):
+		multiplier = 1.0 / 3.0
+	var damage = ENEMY_DAMAGE * multiplier
+	health_bar.set_current_value(health_bar.current_value - damage)
 	if health_bar.current_value <= 0:
 		death()
 	else:
@@ -174,7 +178,11 @@ func collect_energy() -> void:
 	energy_audio.play()
 
 func consume_energy(amount: float) -> void:
-	energy_bar.set_current_value(energy_bar.current_value - amount)
+	var multiplier = 1.0
+	if GlobalState.perks["battery"]:
+		multiplier = 1.0 / 3.0
+	var energy_loss = multiplier * amount
+	energy_bar.set_current_value(energy_bar.current_value - energy_loss)
 	if energy_bar.current_value <= 0:
 		death()
 

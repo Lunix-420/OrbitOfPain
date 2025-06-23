@@ -9,10 +9,10 @@ var sfx_volume := -12.0
 var music_volume := -12.0
 
 var highscore := 0
-var skillpoints := 0
+var skillpoints := 2
 
 var perks := {
-	"health" = false,
+	"health" = false, # Done
 	"shield" = false,
 	"teleport" = false,
 	"battery" = false,
