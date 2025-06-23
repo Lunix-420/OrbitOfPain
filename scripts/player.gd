@@ -37,6 +37,7 @@ const ENERGY_PICKUP_STRENGTH = 200
 const WEAPON_COST = 40
 const TELEPORT_COST = 300
 const ENEMY_DAMAGE = 150.0
+const HEALING_SPEED = 20.0
 
 #==================================================================================================#
 # Audio Config
@@ -83,6 +84,7 @@ func _physics_process(delta: float) -> void:
 	_process_rotation(delta)
 	_process_shooting()
 	_process_teleport()
+	_process_healing(delta)
 	consume_energy(BASE_ENERGY_DRAIN * delta)
 	update_exhaust_audio()
 	move_and_slide()
@@ -216,6 +218,12 @@ func update_exhaust_audio() -> void:
 #==================================================================================================#
 # Health & Energy 
 
+func _process_healing(delta: float) -> void:
+	if not GlobalState.perks["healing"]:
+		return
+	var amount = HEALING_SPEED * delta
+	gain_health(amount)
+
 func loose_health() -> void:
 	var multiplier = 1.0
 	if (GlobalState.perks["health"]):
@@ -226,6 +234,9 @@ func loose_health() -> void:
 		death()
 	else:
 		damage_audio.play()
+	
+func gain_health(amount: float) -> void:
+	health_bar.set_current_value(health_bar.current_value + amount)
 
 func collect_energy() -> void:
 	energy_bar.set_current_value(energy_bar.current_value + ENERGY_PICKUP_STRENGTH)
