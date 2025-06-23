@@ -89,6 +89,9 @@ func _physics_process(delta: float) -> void:
 func _process_movement(delta: float) -> void:
 	var forward_input = int(Input.is_action_pressed("move_forward")) - int(Input.is_action_pressed("move_backwards"))
 	var strafe_input = int(Input.is_action_pressed("move_left")) - int(Input.is_action_pressed("move_right"))
+	var multiplier = 1.0
+	if GlobalState.perks["speed"]:
+		multiplier = 1.5
 	forward_speed = clamp(forward_speed + FORWARD_ACCEL * forward_input * delta, -MAX_BACKWARD_SPEED, MAX_FORWARD_SPEED)
 	strafe_speed = clamp(strafe_speed + STRAFE_ACCEL * strafe_input * delta, -MAX_STRAFE_SPEED, MAX_STRAFE_SPEED)
 	if forward_input == 0:
@@ -97,7 +100,7 @@ func _process_movement(delta: float) -> void:
 		strafe_speed = _apply_friction(strafe_speed, delta)	
 	var forward_dir = sprite.global_transform.y.normalized()
 	var right_dir = sprite.global_transform.x.normalized()
-	velocity = forward_dir * forward_speed + right_dir * strafe_speed	
+	velocity = forward_dir * forward_speed * multiplier + right_dir * strafe_speed * multiplier
 	_update_exhaust_emission(forward_input, strafe_input)
 
 func _apply_friction(value: float, delta: float) -> float:

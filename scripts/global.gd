@@ -12,14 +12,14 @@ var highscore := 0
 var skillpoints := 2
 
 var perks := {
-	"health" = false, # Done
+	"health" = false,		# Done
 	"shield" = false,
 	"teleport" = false,
-	"battery" = false,
+	"battery" = false,		# Done
 	"magnet" = false,
 	"rocket" = false,
 	"dash" = false,
-	"speed" = false
+	"speed" = false			# Done
 }
 
 #==================================================================================================#
