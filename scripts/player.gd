@@ -35,6 +35,7 @@ const BASE_ENERGY_DRAIN = 20.0
 const ENERGY_LOSS = 2000.0
 const ENERGY_PICKUP_STRENGTH = 200
 const WEAPON_COST = 40
+const TELEPORT_COST = 300
 const ENEMY_DAMAGE = 150.0
 
 #==================================================================================================#
@@ -48,6 +49,7 @@ const DAMAGE_GAIN = 0.0
 #==================================================================================================#
 # Nodes 
 
+@onready var collider = get_node("CollisionShape2D")
 @onready var sprite = get_node("Sprite")
 @onready var shooter = sprite.get_node("Shooter")
 @onready var exhaust_back_left = sprite.get_node("ExhaustBackLeft")
@@ -65,6 +67,7 @@ const DAMAGE_GAIN = 0.0
 @onready var damage_audio: AudioStreamPlayer2D = $DamageAudioPlayer
 @onready var explosion: GPUParticles2D = get_node("Explosion")
 @export var plasma_scene: PackedScene
+@export var teleporter_scene: PackedScene
 
 #==================================================================================================#
 # Main Behaviors
@@ -79,6 +82,7 @@ func _physics_process(delta: float) -> void:
 	_process_movement(delta)
 	_process_rotation(delta)
 	_process_shooting()
+	_process_teleport()
 	consume_energy(BASE_ENERGY_DRAIN * delta)
 	update_exhaust_audio()
 	move_and_slide()
@@ -117,7 +121,7 @@ func _process_rotation(delta: float) -> void:
 		sprite.rotation -= ROTATE_SPEED * delta
 
 #==================================================================================================#
-# Weapons
+# Actions
 
 func _process_shooting() -> void:
 	if Input.is_action_just_pressed("action_shoot"):
@@ -128,6 +132,54 @@ func _process_shooting() -> void:
 		plasma.position = shooter.global_position
 		plasma.set("init_speed", forward_speed)
 		get_tree().current_scene.add_child(plasma)
+		
+func _process_teleport() -> void:
+	if not GlobalState.perks["teleport"]:
+		return
+		
+	if not energy_bar.current_value > TELEPORT_COST:
+		return
+
+	if Input.is_action_just_pressed("action_teleport"):
+		# Get inputs
+		var forward_input = int(Input.is_action_pressed("move_forward")) - int(Input.is_action_pressed("move_backwards"))
+		var strafe_input = int(Input.is_action_pressed("move_left")) - int(Input.is_action_pressed("move_right"))
+
+		# Cancel out opposite inputs
+		if Input.is_action_pressed("move_forward") and Input.is_action_pressed("move_backwards"):
+			forward_input = 0
+		if Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"):
+			strafe_input = 0
+
+		# Build direction vector using your sprite's axis convention
+		var dir = (sprite.global_transform.x.normalized() * -forward_input) + (sprite.global_transform.y.normalized() * strafe_input)
+
+		# Default direction if no input
+		if dir == Vector2.ZERO:
+			dir = sprite.global_transform.y.normalized()
+		
+		# Normalize to get direction
+		dir = dir.normalized()
+		
+		# Drain energy and init teleport
+		consume_energy(TELEPORT_COST)
+		var teleporter = teleporter_scene.instantiate()
+		teleporter.init(self, dir)
+		teleporter.rotation = dir.angle()
+		teleporter.position = shooter.global_position
+		teleporter.set("init_speed", forward_speed)
+		get_tree().current_scene.add_child(teleporter)
+		_start_teleport()
+
+
+func _start_teleport() -> void:
+	sprite.visible = false
+	collider.disabled = true
+
+func end_teleport(teleport_position: Vector2) -> void:
+	position = teleport_position
+	sprite.visible = true
+	collider.disabled = false
 
 #==================================================================================================#
 # Exhaust
