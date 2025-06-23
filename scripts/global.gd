@@ -16,8 +16,8 @@ var perks := {
 	"shield" = false,		# Done
 	"teleport" = false,		# Done
 	"battery" = false,		# Done 
-	"magnet" = false,		
-	"rocket" = false,
+	"magnet" = false,		# Done
+	"rocket" = false,		
 	"healing" = false,		# Done
 	"speed" = false			# Done
 }

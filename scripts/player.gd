@@ -35,7 +35,7 @@ const BASE_ENERGY_DRAIN = 20.0
 const ENERGY_LOSS = 2000.0
 const ENERGY_PICKUP_STRENGTH = 200
 const WEAPON_COST = 40
-const TELEPORT_COST = 300
+const TELEPORT_COST = 50
 const ENEMY_DAMAGE = 150.0
 const HEALING_SPEED = 20.0
 const SHIELD_COST = 250.0
@@ -97,13 +97,19 @@ func _physics_process(delta: float) -> void:
 # Movement
 
 func _process_movement(delta: float) -> void:
-	var forward_input = int(Input.is_action_pressed("move_forward")) - int(Input.is_action_pressed("move_backwards"))
-	var strafe_input = int(Input.is_action_pressed("move_left")) - int(Input.is_action_pressed("move_right"))
+	var move_forward = int(Input.is_action_pressed("move_forward"))
+	var move_backward =  int(Input.is_action_pressed("move_backwards"))
+	var forward_input = move_forward - move_backward
+	var move_left =  int(Input.is_action_pressed("move_left"))
+	var move_right = int(Input.is_action_pressed("move_right"))
+	var strafe_input = move_left - move_right
 	var multiplier = 1.0
 	if GlobalState.perks["speed"]:
 		multiplier = 1.5
-	forward_speed = clamp(forward_speed + FORWARD_ACCEL * forward_input * delta, -MAX_BACKWARD_SPEED, MAX_FORWARD_SPEED)
-	strafe_speed = clamp(strafe_speed + STRAFE_ACCEL * strafe_input * delta, -MAX_STRAFE_SPEED, MAX_STRAFE_SPEED)
+	var raw_forward_speed = forward_speed + FORWARD_ACCEL * forward_input * delta
+	forward_speed = clamp(raw_forward_speed, -MAX_BACKWARD_SPEED, MAX_FORWARD_SPEED)
+	var raw_strafe_speed = strafe_speed + STRAFE_ACCEL * strafe_input * delta
+	strafe_speed = clamp(raw_strafe_speed, -MAX_STRAFE_SPEED, MAX_STRAFE_SPEED)
 	if forward_input == 0:
 		forward_speed = _apply_friction(forward_speed, delta)
 	if strafe_input == 0:
@@ -158,8 +164,12 @@ func _process_teleport() -> void:
 
 	if Input.is_action_just_pressed("action_teleport"):
 		# Get inputs
-		var forward_input = int(Input.is_action_pressed("move_forward")) - int(Input.is_action_pressed("move_backwards"))
-		var strafe_input = int(Input.is_action_pressed("move_left")) - int(Input.is_action_pressed("move_right"))
+		var move_forward = int(Input.is_action_pressed("move_forward"))
+		var move_backward =  int(Input.is_action_pressed("move_backwards"))
+		var forward_input = move_forward - move_backward
+		var move_left =  int(Input.is_action_pressed("move_left"))
+		var move_right = int(Input.is_action_pressed("move_right"))
+		var strafe_input = move_left - move_right
 
 		# Cancel out opposite inputs
 		if Input.is_action_pressed("move_forward") and Input.is_action_pressed("move_backwards"):
@@ -168,7 +178,9 @@ func _process_teleport() -> void:
 			strafe_input = 0
 
 		# Build direction vector using your sprite's axis convention
-		var dir = (sprite.global_transform.x.normalized() * -forward_input) + (sprite.global_transform.y.normalized() * strafe_input)
+		var forward_dir = sprite.global_transform.x.normalized() * -forward_input
+		var strafe_dir = sprite.global_transform.y.normalized() * strafe_input
+		var dir = forward_dir + strafe_dir
 
 		# Default direction if no input
 		if dir == Vector2.ZERO:
