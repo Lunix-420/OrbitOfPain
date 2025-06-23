@@ -15,7 +15,7 @@ extends CanvasLayer
 # Main Behaviors
 
 # Handle inputs
-func _input(event):
+func _input(_event):
 	pass
 	
 #==================================================================================================#
