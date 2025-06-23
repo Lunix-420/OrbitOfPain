@@ -13,7 +13,7 @@ var skillpoints := 2
 
 var perks := {
 	"health" = false,		# Done
-	"shield" = false,
+	"shield" = false,		# Done
 	"teleport" = false,		# Done
 	"battery" = false,		# Done
 	"magnet" = false,

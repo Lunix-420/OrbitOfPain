@@ -38,6 +38,8 @@ const WEAPON_COST = 40
 const TELEPORT_COST = 300
 const ENEMY_DAMAGE = 150.0
 const HEALING_SPEED = 20.0
+const SHIELD_COST = 250.0
+const SHIELD_DAMAGE_MULTIPLIER = 0.5
 
 #==================================================================================================#
 # Audio Config
@@ -53,6 +55,7 @@ const DAMAGE_GAIN = 0.0
 @onready var collider = get_node("CollisionShape2D")
 @onready var sprite = get_node("Sprite")
 @onready var shooter = sprite.get_node("Shooter")
+@onready var shield = get_node("Shield")
 @onready var exhaust_back_left = sprite.get_node("ExhaustBackLeft")
 @onready var exhaust_back_right = sprite.get_node("ExhaustBackRight")
 @onready var exhaust_front_left = sprite.get_node("ExhaustFrontLeft")
@@ -85,6 +88,7 @@ func _physics_process(delta: float) -> void:
 	_process_shooting()
 	_process_teleport()
 	_process_healing(delta)
+	_process_shield(delta)
 	consume_energy(BASE_ENERGY_DRAIN * delta)
 	update_exhaust_audio()
 	move_and_slide()
@@ -124,6 +128,16 @@ func _process_rotation(delta: float) -> void:
 
 #==================================================================================================#
 # Actions
+
+func _process_shield(delta: float) -> void:
+	if not GlobalState.perks["shield"]:
+		shield.visible = false
+		return
+	if Input.is_action_pressed("action_shield"):
+		consume_energy(SHIELD_COST * delta)
+		shield.visible = true
+	else:
+		shield.visible = false
 
 func _process_shooting() -> void:
 	if Input.is_action_just_pressed("action_shoot"):
@@ -225,11 +239,18 @@ func _process_healing(delta: float) -> void:
 	gain_health(amount)
 
 func loose_health() -> void:
+	# Calculate Damage
 	var multiplier = 1.0
 	if (GlobalState.perks["health"]):
 		multiplier = 1.0 / 3.0
 	var damage = ENEMY_DAMAGE * multiplier
-	health_bar.set_current_value(health_bar.current_value - damage)
+	
+	# Reduce Health or Energy (if shield is active)
+	if not shield.visible:
+		health_bar.set_current_value(health_bar.current_value - damage)
+	else:
+		consume_energy(damage * SHIELD_DAMAGE_MULTIPLIER)
+		
 	if health_bar.current_value <= 0:
 		death()
 	else:
