@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://gtbhbm54ufjd"]
+
+[ext_resource type="Script" uid="uid://ga1ulqb8st8q" path="res://scripts/teleporter.gd" id="1_1uij4"]
+[ext_resource type="AudioStream" uid="uid://uvpp0nit5kdw" path="res://sounds/plasma.mp3" id="2_q8nlw"]
+[ext_resource type="Script" uid="uid://ckxwhcbgtcyih" path="res://scripts/projectile_sfx.gd" id="3_b58gx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kq07p"]
+radius = 60.0083
+
+[sub_resource type="Gradient" id="Gradient_qtutu"]
+offsets = PackedFloat32Array(0, 0.344186, 0.665116, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.103774, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oon8e"]
+gradient = SubResource("Gradient_qtutu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1uij4"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(100, 100, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+velocity_pivot = Vector3(0, 100, 0)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 500.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 15.0
+color_ramp = SubResource("GradientTexture1D_oon8e")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[node name="Teleporter" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_1uij4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kq07p")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 200
+lifetime = 0.2
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1uij4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_q8nlw")
+script = ExtResource("3_b58gx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

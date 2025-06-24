@@ -17,19 +17,25 @@ const SPAWN_DISTANCE := 2000.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
+					{ "scene": enemy_scene, "count": 1 }
+				]
+			},
+			{
+				"spawn_delay": 5.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 15.0,
+				"enemies": [
 					{ "scene": enemy_scene, "count": 3 }
 				]
 			},
 			{
-				"spawn_delay": 10.0,
+				"spawn_delay": 15.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 5 }
-				]
-			},
-			{
-				"spawn_delay": 10.0,
-				"enemies": [
-					{ "scene": enemy_scene, "count": 10 }
+					{ "scene": enemy_scene, "count": 3 }
 				]
 			}
 		]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc3paffttkbn7"]
+
+[ext_resource type="Script" uid="uid://csdch684g8eru" path="res://scripts/upgrade.gd" id="1_6xi3t"]
+[ext_resource type="FontFile" uid="uid://dyej5eb8ymwwc" path="res://fonts/Silkscreen.ttf" id="1_me5mq"]
+[ext_resource type="StyleBox" uid="uid://dfbtt2bkedy5v" path="res://buttons/Default.tres" id="2_3u6ei"]
+[ext_resource type="Texture2D" uid="uid://c0bb3i1a2q3l3" path="res://icons/health-increase.svg" id="3_3u6ei"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvqh2"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.392157)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(5.46284e-05, 0.741649, 0.197245, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xi3t"]
+bg_color = Color(0.792317, 0.789104, 0.893934, 0.568627)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[node name="Upgrade" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -420.0
+offset_bottom = -780.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6xi3t")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 1500.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("1_me5mq")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/focus = ExtResource("2_3u6ei")
+theme_override_styles/disabled_mirrored = ExtResource("2_3u6ei")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cvqh2")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_3u6ei")
+theme_override_styles/hover_pressed = ExtResource("2_3u6ei")
+theme_override_styles/hover_mirrored = ExtResource("2_3u6ei")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6xi3t")
+theme_override_styles/pressed_mirrored = ExtResource("2_3u6ei")
+theme_override_styles/pressed = ExtResource("2_3u6ei")
+theme_override_styles/normal_mirrored = ExtResource("2_3u6ei")
+theme_override_styles/normal = ExtResource("2_3u6ei")
+
+[node name="Icon" type="Sprite2D" parent="Button"]
+position = Vector2(142, 151)
+scale = Vector2(0.288858, 0.28888)
+texture = ExtResource("3_3u6ei")
+
+[node name="Title" type="Label" parent="Button"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = -13.0
+offset_right = 1431.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("1_me5mq")
+theme_override_font_sizes/font_size = 90
+text = "Lorem ipsum"
+
+[node name="Text" type="Label" parent="Button"]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 82.0
+offset_right = 1491.0
+offset_bottom = 290.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("1_me5mq")
+theme_override_font_sizes/font_size = 50
+text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor"
+autowrap_mode = 2
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]

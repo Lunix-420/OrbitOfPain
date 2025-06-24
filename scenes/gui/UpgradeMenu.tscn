@@ -1,0 +1,169 @@
+[gd_scene load_steps=15 format=3 uid="uid://dmdbx07uhmqlv"]
+
+[ext_resource type="PackedScene" uid="uid://b7hv5cuvwf71g" path="res://scenes/gui/Skillpoints.tscn" id="1_r0n3q"]
+[ext_resource type="Script" uid="uid://cp36ldjbasu6k" path="res://scripts/upgrade_menu.gd" id="1_v0a7o"]
+[ext_resource type="FontFile" uid="uid://dyej5eb8ymwwc" path="res://fonts/Silkscreen.ttf" id="2_v0a7o"]
+[ext_resource type="StyleBox" uid="uid://dfbtt2bkedy5v" path="res://buttons/Default.tres" id="3_a6jaq"]
+[ext_resource type="PackedScene" uid="uid://dc3paffttkbn7" path="res://scenes/gui/Upgrade.tscn" id="4_h4fle"]
+[ext_resource type="Texture2D" uid="uid://c0bb3i1a2q3l3" path="res://icons/health-increase.svg" id="5_xh8p2"]
+[ext_resource type="Texture2D" uid="uid://cq0qlri0yw0y7" path="res://icons/shield-plus.svg" id="6_5rl1l"]
+[ext_resource type="Texture2D" uid="uid://b6t27stq7v6x8" path="res://icons/teleport.svg" id="7_daoa7"]
+[ext_resource type="Texture2D" uid="uid://bcq5pata7m8li" path="res://icons/battery-charge.svg" id="8_hkmwm"]
+[ext_resource type="Texture2D" uid="uid://c1qwmprpxu5l" path="res://icons/magnet.svg" id="9_70fby"]
+[ext_resource type="Texture2D" uid="uid://di5gf15k248xi" path="res://icons/rocket.svg" id="10_giano"]
+[ext_resource type="Texture2D" uid="uid://u0os0egfuw3f" path="res://icons/speed.svg" id="12_fe302"]
+[ext_resource type="Texture2D" uid="uid://b5app8jighrya" path="res://icons/healing.svg" id="12_v0a7o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymhph"]
+bg_color = Color(0.792317, 0.789104, 0.893934, 0.568627)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[node name="UpgradeMenu" type="CanvasLayer"]
+visible = false
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+script = ExtResource("1_v0a7o")
+
+[node name="Menu" type="Node2D" parent="."]
+visible = false
+position = Vector2(1920, 1460)
+
+[node name="Skillpoints" parent="Menu" instance=ExtResource("1_r0n3q")]
+position = Vector2(-1000, 350)
+
+[node name="TitleButton" type="Button" parent="Menu"]
+offset_left = -600.0
+offset_top = -1300.0
+offset_right = 600.0
+offset_bottom = -1100.0
+theme_override_fonts/font = ExtResource("2_v0a7o")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("3_a6jaq")
+theme_override_styles/disabled_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/disabled = ExtResource("3_a6jaq")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/hover_pressed = ExtResource("3_a6jaq")
+theme_override_styles/hover_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/hover = ExtResource("3_a6jaq")
+theme_override_styles/pressed_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/pressed = ExtResource("3_a6jaq")
+theme_override_styles/normal_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/normal = ExtResource("3_a6jaq")
+text = "Buy Upgrades"
+
+[node name="CloseButton" type="Button" parent="Menu"]
+offset_left = 1000.0
+offset_top = -1300.0
+offset_right = 1550.0
+offset_bottom = -1100.0
+theme_override_fonts/font = ExtResource("2_v0a7o")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("3_a6jaq")
+theme_override_styles/disabled_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/disabled = ExtResource("3_a6jaq")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/hover_pressed = ExtResource("3_a6jaq")
+theme_override_styles/hover_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ymhph")
+theme_override_styles/pressed_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/pressed = ExtResource("3_a6jaq")
+theme_override_styles/normal_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/normal = ExtResource("3_a6jaq")
+text = "Close"
+
+[node name="Health" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = -1550.0
+offset_right = -1550.0
+offset_bottom = 0.0
+title_string = "Health Boost"
+text_string = "Doubles maximum amount of HP from 100 to 300"
+icon_texture = ExtResource("5_xh8p2")
+perk = "health"
+metadata/_edit_use_anchors_ = true
+
+[node name="Shield" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = 50.0
+offset_right = 50.0
+offset_bottom = 0.0
+title_string = "Energy Shield"
+text_string = "Press CTRL to block damage while continuously loosing energy"
+icon_texture = ExtResource("6_5rl1l")
+perk = "shield"
+metadata/_edit_use_anchors_ = true
+
+[node name="Teleport" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = -1550.0
+offset_top = -350.0
+offset_right = -1550.0
+offset_bottom = -350.0
+title_string = "Teleport"
+text_string = "Press space to teleport towards mouse"
+icon_texture = ExtResource("7_daoa7")
+perk = "teleport"
+metadata/_edit_use_anchors_ = true
+
+[node name="Battery" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = 50.0
+offset_top = -350.0
+offset_right = 50.0
+offset_bottom = -350.0
+title_string = "Extra Battery"
+text_string = "Increase maximum energy charge from 100 to 300"
+icon_texture = ExtResource("8_hkmwm")
+perk = "battery"
+metadata/_edit_use_anchors_ = true
+
+[node name="Magnet" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = -1550.0
+offset_top = -700.0
+offset_right = -1550.0
+offset_bottom = -700.0
+title_string = "Magnet"
+text_string = "Attracts enemy drops and pulls them towards you"
+icon_texture = ExtResource("9_70fby")
+perk = "magnet"
+metadata/_edit_use_anchors_ = true
+
+[node name="Rocket" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = 50.0
+offset_top = -700.0
+offset_right = 50.0
+offset_bottom = -700.0
+title_string = "Rocket Launcher"
+text_string = "Press CTRL to shoot rockets"
+icon_texture = ExtResource("10_giano")
+perk = "rocket"
+metadata/_edit_use_anchors_ = true
+
+[node name="Dash" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = -1550.0
+offset_top = -1050.0
+offset_right = -1550.0
+offset_bottom = -1050.0
+title_string = "Healing"
+text_string = "Continouesly repairs ship, repair speed depends on max health"
+icon_texture = ExtResource("12_v0a7o")
+perk = "healing"
+metadata/_edit_use_anchors_ = true
+
+[node name="Speed" parent="Menu" instance=ExtResource("4_h4fle")]
+offset_left = 50.0
+offset_top = -1050.0
+offset_right = 50.0
+offset_bottom = -1050.0
+title_string = "Speed Boost"
+text_string = "Permanently increases base movement speed from 100 to 150"
+icon_texture = ExtResource("12_fe302")
+perk = "speed"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="Menu/CloseButton" to="." method="_on_closes_button_down"]

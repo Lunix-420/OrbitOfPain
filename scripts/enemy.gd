@@ -4,14 +4,14 @@ extends CharacterBody2D
 # State Variables
  
 var is_dead: bool = false
-var shoot_timer: float = -3.0
+var shoot_timer: float = -10.0
 var player: CharacterBody2D
 
 #==================================================================================================#
 # Movement & Attack Config
 
 const SPEED = 10000.0
-const ATTACK_TIMEOUT = 1.5
+const ATTACK_TIMEOUT = 2.0
 
 #==================================================================================================#
 # Audio Config
@@ -30,6 +30,7 @@ const EXPLOSION_GAIN: float = 0.0
 
 func _ready() -> void:
 	player = get_node("../Player")
+	shoot_timer = randf_range(-ATTACK_TIMEOUT * 2, -ATTACK_TIMEOUT * 1.5)
 
 func _physics_process(delta: float) -> void:
 	if not GlobalState.game_started or is_dead:
@@ -53,7 +54,7 @@ func _process_shooting(delta: float) -> void:
 		laser.rotation = rotation
 		laser.position = global_position
 		get_tree().current_scene.add_child(laser)
-		shoot_timer = 0.07
+		shoot_timer = randf_range(0, ATTACK_TIMEOUT * 0.2)
 
 #==================================================================================================#
 # Health & Death
