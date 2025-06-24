@@ -11,6 +11,9 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var fast_enemy_scene: PackedScene
 
+#Enemy List
+var current_enemies := []
+
 #==================================================================================================#
 # Configs
 
@@ -149,13 +152,15 @@ func _update_wave(delta: float) -> void:
 			subwave_index += 1
 			subwave_timer = 0.0
 	else:
-		post_wave_timer += delta
-		if post_wave_timer >= post_wave_delay:
-			post_wave_timer = 0.0
-			current_wave += 1
-			state = GameState.BREAK
-			print("Wave complete! Entering break.")
-			_on_enter_break()
+		# Only proceed to break if all enemies are dead
+		if current_enemies.is_empty():
+			post_wave_timer += delta
+			if post_wave_timer >= post_wave_delay:
+				post_wave_timer = 0.0
+				current_wave += 1
+				state = GameState.BREAK
+				print("Wave complete! Entering break.")
+				_on_enter_break()
 
 func _spawn_subwave(subwave: Dictionary) -> void:
 	for enemy_data in subwave["enemies"]:
@@ -167,6 +172,14 @@ func _spawn_enemy(scene: PackedScene) -> void:
 	var enemy = scene.instantiate()
 	enemy.position = spawn_point
 	get_tree().current_scene.add_child(enemy)
+	
+	# Track enemy and connect to its removal
+	current_enemies.append(enemy)
+	enemy.connect("died", Callable(self, "_on_enemy_removed").bind(enemy))
+
+func _on_enemy_removed(enemy):
+	if enemy in current_enemies:
+		current_enemies.erase(enemy)
 
 func _get_spawn_point() -> Vector2:
 	var angle = randf_range(0, TAU)

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 #==================================================================================================#
 # State Variables
  
@@ -65,6 +67,7 @@ func take_damage() -> void:
 	is_dead = true
 	_explode()
 	spawn_energy()
+	emit_signal("died")
 	queue_free()
 
 func _explode() -> void:
