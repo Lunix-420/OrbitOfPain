@@ -28,10 +28,33 @@ corner_detail = 20
 shadow_color = Color(0, 0, 0, 0.392157)
 
 [node name="UpgradeMenu" type="CanvasLayer"]
-visible = false
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 script = ExtResource("1_v0a7o")
+
+[node name="Hud" type="Node2D" parent="."]
+visible = false
+position = Vector2(1920, 1460)
+
+[node name="Buy" type="Button" parent="Hud"]
+offset_left = -600.0
+offset_top = 354.0
+offset_right = 600.0
+offset_bottom = 554.0
+theme_override_fonts/font = ExtResource("2_v0a7o")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("3_a6jaq")
+theme_override_styles/disabled_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/disabled = ExtResource("3_a6jaq")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/hover_pressed = ExtResource("3_a6jaq")
+theme_override_styles/hover_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ymhph")
+theme_override_styles/pressed_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/pressed = ExtResource("3_a6jaq")
+theme_override_styles/normal_mirrored = ExtResource("3_a6jaq")
+theme_override_styles/normal = ExtResource("3_a6jaq")
+text = "Buy Upgrades"
 
 [node name="Menu" type="Node2D" parent="."]
 visible = false
@@ -166,4 +189,5 @@ icon_texture = ExtResource("12_fe302")
 perk = "speed"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="button_down" from="Hud/Buy" to="." method="_on_closes_button_down"]
 [connection signal="button_down" from="Menu/CloseButton" to="." method="_on_closes_button_down"]

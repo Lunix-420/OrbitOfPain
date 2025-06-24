@@ -159,7 +159,6 @@ offset_right = -1768.0
 offset_bottom = -1057.0
 
 [node name="UpgradeMenu" parent="Camera" instance=ExtResource("7_ci04x")]
-visible = true
 
 [node name="EnergyAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_70d11")

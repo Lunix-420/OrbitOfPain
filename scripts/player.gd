@@ -89,7 +89,6 @@ func _physics_process(delta: float) -> void:
 	_process_teleport()
 	_process_healing(delta)
 	_process_shield(delta)
-	consume_energy(BASE_ENERGY_DRAIN * delta)
 	update_exhaust_audio()
 	move_and_slide()
 
@@ -118,6 +117,9 @@ func _process_movement(delta: float) -> void:
 	var right_dir = sprite.global_transform.x.normalized()
 	velocity = forward_dir * forward_speed * multiplier + right_dir * strafe_speed * multiplier
 	_update_exhaust_emission(forward_input, strafe_input)
+	var cost_multiplier = abs(forward_input) + abs(strafe_input)
+	var cost = BASE_ENERGY_DRAIN * cost_multiplier;
+	consume_energy(cost * delta)
 
 func _apply_friction(value: float, delta: float) -> float:
 	if value > 0:
@@ -127,11 +129,15 @@ func _apply_friction(value: float, delta: float) -> float:
 	return 0.0
 
 func _process_rotation(delta: float) -> void:
-	if Input.is_action_pressed("move_turn_ccw"):
+	var ccw_input = Input.is_action_pressed("move_turn_ccw")
+	var cw_input = Input.is_action_pressed("move_turn_cw")
+	if ccw_input and not cw_input:
 		sprite.rotation += ROTATE_SPEED * delta
-	if Input.is_action_pressed("move_turn_cw"):
+		consume_energy(BASE_ENERGY_DRAIN * delta)
+	if cw_input and not ccw_input:
 		sprite.rotation -= ROTATE_SPEED * delta
-
+		consume_energy(BASE_ENERGY_DRAIN * delta)
+		
 #==================================================================================================#
 # Actions
 
