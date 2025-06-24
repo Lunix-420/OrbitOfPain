@@ -63,18 +63,14 @@ func _process(delta):
 
 func player_hit(): # Done
 	seconds_since_last_hit = 0.0
-	reset_combo()
 
 func player_moved(): # Done
 	seconds_since_last_move = 0.0
 
 func shot_missed(): 
-	reset_combo()
+	combo_count = 0	
 
-func reset_combo():
-	combo_count = 0
-
-func register_kill():
+func register_kill(): # Done
 	combo_count += 1
 
 func get_hit_multiplier() -> float:

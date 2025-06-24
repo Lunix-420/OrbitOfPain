@@ -86,6 +86,50 @@ const SPAWN_DISTANCE := 2000.0
 				]
 			}
 		]
+	},
+	{
+		"subwaves": [
+			{
+				"spawn_delay": 0.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 50 }
+				]
+			},
+			{
+				"spawn_delay": 30.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count":  50 }
+				]
+			},
+			{
+				"spawn_delay": 30.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 50 }
+				]
+			}
+		]
+	},
+	{
+		"subwaves": [
+			{
+				"spawn_delay": 0.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 100 }
+				]
+			},
+			{
+				"spawn_delay": 50.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count":  100 }
+				]
+			},
+			{
+				"spawn_delay": 120.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 200 }
+				]
+			}
+		]
 	}
 ]
 
@@ -197,6 +241,7 @@ func _spawn_enemy(scene: PackedScene) -> void:
 func _on_enemy_removed(enemy):
 	if enemy in current_enemies:
 		current_enemies.erase(enemy)
+		GlobalState.register_kill()
 
 func _get_spawn_point() -> Vector2:
 	var angle = randf_range(0, TAU)
