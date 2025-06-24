@@ -8,8 +8,9 @@ extends CanvasLayer
 @onready var credits_menu: Node2D = get_node("CreditsMenu")
 
 @onready var player: CharacterBody2D = get_parent().get_node("Player")
+@onready var spawner: Node2D = player.get_node("Spawner")
 @onready var camera: Camera2D = player.get_node("Camera")
-@onready var upgrade_menu: Node2D = camera.get_node("UpgradeMenu").get_node("Menu")
+@onready var upgrade_menu: Node2D = camera.get_node("CanvasLayer").get_node("UpgradeMenu")
 
 #==================================================================================================#
 # Main Behaviors
@@ -26,6 +27,7 @@ func _on_start_button_pressed() -> void:
 	main_menu.visible = false
 	GlobalState.game_started = true
 	player.visible = true
+	spawner.start_next_wave()
 
 # Close the game
 func _on_exit_button_pressed() -> void:
