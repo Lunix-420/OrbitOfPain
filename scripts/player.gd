@@ -38,8 +38,8 @@ const WEAPON_COST = 40
 const TELEPORT_COST = 50
 const ENEMY_DAMAGE = 150.0
 const HEALING_SPEED = 20.0
-const SHIELD_COST = 250.0
-const SHIELD_DAMAGE_MULTIPLIER = 0.5
+const SHIELD_COST = 200.0
+const SHIELD_DAMAGE_MULTIPLIER = 0.1
 
 #==================================================================================================#
 # Audio Config
