@@ -5,12 +5,15 @@ extends CanvasLayer
 @onready var camera: Node2D = get_parent()
 @onready var player: Node2D = camera.get_parent()
 @onready var spawner: Node2D = player.get_node("Spawner")
+@onready var highscore: Node2D = get_node("Highscore")
+@onready var highscore_amount: Label = highscore.get_node("Amount")
 
 func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	pass
+	if GlobalState.highscore > 0:
+		highscore_amount.text = str(GlobalState.highscore) 
 
 func _input(event):
 	if event.is_action_pressed("open_upgrade_menu") and GlobalState.game_started:

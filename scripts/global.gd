@@ -47,12 +47,11 @@ func reload_scene_after_delay(seconds: float) -> void:
 	
 #==================================================================================================#
 # Highscore
-var highscore := 0
 
 var seconds_since_last_hit: float = 0.0
 var seconds_since_last_move: float = 0.0
 var combo_count: int = 0
-var total_score: int = 0
+var highscore := 0
 
 const MOVE_MULTIPLIER_CAP = 5.0
 const COMBO_MULTIPLIER_STEP = 0.1
@@ -62,14 +61,14 @@ func _process(delta):
 	seconds_since_last_hit += delta
 	seconds_since_last_move += delta
 
-func player_hit():
+func player_hit(): # Done
 	seconds_since_last_hit = 0.0
 	reset_combo()
 
-func player_moved():
+func player_moved(): # Done
 	seconds_since_last_move = 0.0
 
-func shot_missed():
+func shot_missed(): 
 	reset_combo()
 
 func reset_combo():
@@ -107,7 +106,7 @@ func increase_score(base_score: int, kill_timer: float, max_kill_time: float) ->
 	var score_gain = int(base_score * total_multiplier)
 
 	# Update global score and combo
-	total_score += score_gain
+	highscore += score_gain
 	register_kill()
 
 	return score_gain

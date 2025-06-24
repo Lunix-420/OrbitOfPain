@@ -209,6 +209,17 @@ icon_texture = ExtResource("12_fe302")
 perk = "speed"
 metadata/_edit_use_anchors_ = true
 
+[node name="Highscore" type="Node2D" parent="."]
+
+[node name="Amount" type="Label" parent="Highscore"]
+offset_left = 2032.0
+offset_top = 18.0
+offset_right = 3754.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("2_v0a7o")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 2
+
 [connection signal="button_down" from="BreakMenu/Buy" to="." method="_on_buy_button_down"]
 [connection signal="button_down" from="BreakMenu/Next" to="." method="_on_next_button_down"]
 [connection signal="button_down" from="UpgradeMenu/CloseButton" to="." method="_on_closes_button_down"]

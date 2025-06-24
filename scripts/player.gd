@@ -120,6 +120,8 @@ func _process_movement(delta: float) -> void:
 	var cost_multiplier = abs(forward_input) + abs(strafe_input)
 	var cost = BASE_ENERGY_DRAIN * cost_multiplier;
 	consume_energy(cost * delta)
+	if cost_multiplier > 0:
+		GlobalState.player_moved()
 
 func _apply_friction(value: float, delta: float) -> float:
 	if value > 0:
@@ -266,6 +268,7 @@ func loose_health() -> void:
 	# Reduce Health or Energy (if shield is active)
 	if not shield.visible:
 		health_bar.set_current_value(health_bar.current_value - damage)
+		GlobalState.player_hit()
 	else:
 		consume_energy(damage * SHIELD_DAMAGE_MULTIPLIER)
 		

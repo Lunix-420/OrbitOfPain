@@ -8,12 +8,15 @@ signal died
 var is_dead: bool = false
 var shoot_timer: float = -10.0
 var player: CharacterBody2D
+var kill_timer := 0.0
 
 #==================================================================================================#
-# Movement & Attack Config
+# Config
 
 const SPEED = 10000.0
 const ATTACK_TIMEOUT = 2.0
+const BASE_SCORE = 1
+const MAX_KILL_TIME = 15 # Max time to get score multiplier on kill
 
 #==================================================================================================#
 # Audio Config
@@ -37,6 +40,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not GlobalState.game_started or is_dead:
 		return
+	kill_timer += delta
 	_process_movement_and_attack(delta)
 	move_and_slide()
 
@@ -65,6 +69,7 @@ func take_damage() -> void:
 	if is_dead:
 		return
 	is_dead = true
+	GlobalState.increase_score(BASE_SCORE, kill_timer, MAX_KILL_TIME)
 	_explode()
 	spawn_energy()
 	emit_signal("died")
