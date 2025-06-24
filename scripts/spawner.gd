@@ -29,24 +29,18 @@ const SPAWN_DISTANCE := 2000.0
 					{ "scene": enemy_scene, "count": 1 }
 				]
 			},
-			#{
-				#"spawn_delay": 5.0,
-				#"enemies": [
-					#{ "scene": enemy_scene, "count": 2 }
-				#]
-			#},
-			#{
-				#"spawn_delay": 15.0,
-				#"enemies": [
-					#{ "scene": enemy_scene, "count": 3 }
-				#]
-			#},
-			#{
-				#"spawn_delay": 15.0,
-				#"enemies": [
-					#{ "scene": enemy_scene, "count": 3 }
-				#]
-			#}
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 3 }
+				]
+			}
 		]
 	},
 	{
@@ -58,15 +52,37 @@ const SPAWN_DISTANCE := 2000.0
 				]
 			},
 			{
-				"spawn_delay": 10.0,
+				"spawn_delay": 15.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 7 }
+					{ "scene": enemy_scene, "count": 6 }
 				]
 			},
 			{
 				"spawn_delay": 20.0,
 				"enemies": [
+					{ "scene": enemy_scene, "count": 7 }
+				]
+			}
+		]
+	},
+	{
+		"subwaves": [
+			{
+				"spawn_delay": 0.0,
+				"enemies": [
 					{ "scene": enemy_scene, "count": 10 }
+				]
+			},
+			{
+				"spawn_delay": 20.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 15 }
+				]
+			},
+			{
+				"spawn_delay": 30.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 30 }
 				]
 			}
 		]

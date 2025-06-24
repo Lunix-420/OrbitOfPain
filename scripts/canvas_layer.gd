@@ -24,6 +24,10 @@ func _on_closes_button_down() -> void:
 func _on_buy_button_down() -> void:
 	upgrade_menu.visible = true
 	break_menu.visible = false
+	
+func _on_next_button_down() -> void:
+	spawner.start_next_wave()
+	break_menu.visible = false
 
 #===================================================================================================
 # Spawner Events
