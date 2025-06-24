@@ -11,7 +11,7 @@ var music_volume := -12.0
 #==================================================================================================#
 # Perks
 
-var skillpoints := 2
+var skillpoints := 0
 
 var perks := {
 	"health" = false,		# Done

@@ -160,6 +160,7 @@ func _update_wave(delta: float) -> void:
 				current_wave += 1
 				state = GameState.BREAK
 				print("Wave complete! Entering break.")
+				GlobalState.skillpoints += 1
 				_on_enter_break()
 
 func _spawn_subwave(subwave: Dictionary) -> void:
