@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	if distance > TELEPORT_DISTANCE:
 		_trigger()
 	
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	_trigger()
 
 func _trigger() -> void:

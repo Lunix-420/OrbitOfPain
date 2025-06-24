@@ -18,6 +18,8 @@ func _input(event):
 
 func _on_closes_button_down() -> void:
 	upgrade_menu.visible = false
+	if spawner.state == spawner.GameState.BREAK:
+		break_menu.visible = true
 
 func _on_buy_button_down() -> void:
 	upgrade_menu.visible = true

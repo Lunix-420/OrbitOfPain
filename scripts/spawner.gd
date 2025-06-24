@@ -152,7 +152,7 @@ func _update_wave(delta: float) -> void:
 			subwave_index += 1
 			subwave_timer = 0.0
 	else:
-		# Only proceed to break if all enemies are dead
+		# Only proceed to break if all enemies are deadb
 		if current_enemies.is_empty():
 			post_wave_timer += delta
 			if post_wave_timer >= post_wave_delay:
