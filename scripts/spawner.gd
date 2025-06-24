@@ -1,40 +1,162 @@
 extends Node2D
 
 #==================================================================================================#
-# State Variables
-
-var spawn_timer: float = 5.0
-var spawn_interval: float = 6.0
-var interval_change: float = 0.99
-
-#==================================================================================================#
-# Config
-
-const SPAWN_DISTANCE: float = 2000.0
-
-#==================================================================================================#
-# Nodes
-
+#Scenes
 @export var enemy_scene: PackedScene
+@export var fast_enemy_scene: PackedScene
 
 #==================================================================================================#
-# Main Behaviors
+# Configs
+
+const SPAWN_DISTANCE := 2000.0
+
+# Waves are hardcoded for now
+@onready var waves := [
+	{
+		"subwaves": [
+			{
+				"spawn_delay": 0.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 3 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 5 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 10 }
+				]
+			}
+		]
+	},
+	{
+		"subwaves": [
+			{
+				"spawn_delay": 0.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 3 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 5 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": enemy_scene, "count": 10 }
+				]
+			}
+		]
+	}
+]
+
+@export var endless_enemy_scenes: Dictionary = {
+	"Enemy": {
+		"scene":enemy_scene,
+		"interval": 3.0,
+		"timer": 0.0
+	},
+	"FastEnemy": {
+		"scene": fast_enemy_scene,
+		"interval": 5.0,
+		"timer": 0.0
+	}
+}
+
+#==================================================================================================#
+# State Machine
+
+enum GameState { BREAK, WAVE, ENDLESS }
+var state := GameState.BREAK
+var current_wave := 0
+var subwave_index := 0
+var subwave_timer := 0.0
+var post_wave_delay := 3.0
+var post_wave_timer := 0.0
+
+#==================================================================================================#
+# Process
 
 func _process(delta: float) -> void:
 	if not GlobalState.game_started:
 		return
-	spawn_timer += delta
-	if spawn_timer >= spawn_interval:
-		spawn_enemy()
-		spawn_timer = 0.0
 
-func spawn_enemy() -> void:
-	spawn_interval *= interval_change
+	match state:
+		GameState.BREAK:
+			if Input.is_action_just_pressed("action_start_next_wave"):
+				start_next_wave()
+		GameState.WAVE:
+			update_wave(delta)
+		GameState.ENDLESS:
+			update_endless(delta)
+
+#==================================================================================================#
+# Wave System
+
+func start_next_wave() -> void:
+	if current_wave >= waves.size():
+		enter_endless()
+		return
+
+	print("Wave", current_wave + 1, "starting!")
+	state = GameState.WAVE
+	subwave_index = 0
+	subwave_timer = 0.0
+
+func update_wave(delta: float) -> void:
+	var wave = waves[current_wave]
+	var subwaves = wave["subwaves"]
+
+	if subwave_index < subwaves.size():
+		var current_subwave = subwaves[subwave_index]
+		subwave_timer += delta
+
+		if subwave_timer >= current_subwave["spawn_delay"]:
+			spawn_subwave(current_subwave)
+			subwave_index += 1
+			subwave_timer = 0.0
+	else:
+		post_wave_timer += delta
+		if post_wave_timer >= post_wave_delay:
+			post_wave_timer = 0.0
+			current_wave += 1
+			state = GameState.BREAK
+			print("Wave complete! Entering break.")
+
+func spawn_subwave(subwave: Dictionary) -> void:
+	for enemy_data in subwave["enemies"]:
+		for i in enemy_data["count"]:
+			spawn_enemy(enemy_data["scene"])
+
+func spawn_enemy(scene: PackedScene) -> void:
 	var spawn_point = get_spawn_point()
-	var enemy = enemy_scene.instantiate()
+	var enemy = scene.instantiate()
 	enemy.position = spawn_point
 	get_tree().current_scene.add_child(enemy)
 
 func get_spawn_point() -> Vector2:
-	var random_angle = randf_range(0, 2 * PI)
-	return global_position + Vector2(cos(random_angle) * SPAWN_DISTANCE, sin(random_angle) * SPAWN_DISTANCE)
+	var angle = randf_range(0, TAU)
+	return global_position + Vector2(cos(angle), sin(angle)) * SPAWN_DISTANCE
+
+#==================================================================================================#
+# Endless Mode
+
+func enter_endless() -> void:
+	state = GameState.ENDLESS
+	print("Entering Endless Mode!")
+
+func update_endless(delta: float) -> void:
+	for key in endless_enemy_scenes.keys():
+		var entry = endless_enemy_scenes[key]
+		entry["timer"] += delta
+		if entry["timer"] >= entry["interval"]:
+			spawn_enemy(entry["scene"])
+			entry["timer"] = 0.0

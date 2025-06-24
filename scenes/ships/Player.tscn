@@ -145,6 +145,8 @@ process_material = SubResource("ParticleProcessMaterial_g2els")
 position = Vector2(-23, -5)
 script = ExtResource("3_3li8b")
 enemy_scene = ExtResource("5_w73tk")
+fast_enemy_scene = ExtResource("5_w73tk")
+endless_enemy_scenes = {}
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(-23, -5)
