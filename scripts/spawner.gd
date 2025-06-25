@@ -8,8 +8,8 @@ extends Node2D
 @onready var canvas: CanvasLayer = camera.get_node("CanvasLayer")
 
 #Scenes
-@export var enemy_scene: PackedScene
-@export var fast_enemy_scene: PackedScene
+@export var chaser_scene: PackedScene
+@export var spiral_scene: PackedScene
 
 #Enemy List
 var current_enemies := []
@@ -26,19 +26,19 @@ const SPAWN_DISTANCE := 2000.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 1 }
+					{ "scene": chaser_scene, "count": 1 }
 				]
 			},
 			{
 				"spawn_delay": 10.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 2 }
+					{ "scene": chaser_scene, "count": 2 }
 				]
 			},
 			{
 				"spawn_delay": 10.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 3 }
+					{ "scene": chaser_scene, "count": 3 }
 				]
 			}
 		]
@@ -48,19 +48,42 @@ const SPAWN_DISTANCE := 2000.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 5 }
+					{ "scene": spiral_scene, "count": 2 }
 				]
 			},
 			{
-				"spawn_delay": 15.0,
+				"spawn_delay": 10.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 6 }
+					{ "scene": chaser_scene, "count": 3 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 3 },
+					{ "scene": spiral_scene, "count": 2 }
+				]
+			}
+		]
+	},
+	{
+		"subwaves": [
+			{
+				"spawn_delay": 0.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 10 }
 				]
 			},
 			{
 				"spawn_delay": 20.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 7 }
+					{ "scene": chaser_scene, "count": 15 }
+				]
+			},
+			{
+				"spawn_delay": 30.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 30 }
 				]
 			}
 		]
@@ -70,19 +93,19 @@ const SPAWN_DISTANCE := 2000.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 10 }
-				]
-			},
-			{
-				"spawn_delay": 20.0,
-				"enemies": [
-					{ "scene": enemy_scene, "count": 15 }
+					{ "scene": chaser_scene, "count": 50 }
 				]
 			},
 			{
 				"spawn_delay": 30.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 30 }
+					{ "scene": chaser_scene, "count":  50 }
+				]
+			},
+			{
+				"spawn_delay": 30.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 50 }
 				]
 			}
 		]
@@ -92,41 +115,19 @@ const SPAWN_DISTANCE := 2000.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 50 }
-				]
-			},
-			{
-				"spawn_delay": 30.0,
-				"enemies": [
-					{ "scene": enemy_scene, "count":  50 }
-				]
-			},
-			{
-				"spawn_delay": 30.0,
-				"enemies": [
-					{ "scene": enemy_scene, "count": 50 }
-				]
-			}
-		]
-	},
-	{
-		"subwaves": [
-			{
-				"spawn_delay": 0.0,
-				"enemies": [
-					{ "scene": enemy_scene, "count": 100 }
+					{ "scene": chaser_scene, "count": 100 }
 				]
 			},
 			{
 				"spawn_delay": 50.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count":  100 }
+					{ "scene": chaser_scene, "count":  100 }
 				]
 			},
 			{
 				"spawn_delay": 120.0,
 				"enemies": [
-					{ "scene": enemy_scene, "count": 200 }
+					{ "scene": chaser_scene, "count": 200 }
 				]
 			}
 		]
@@ -134,13 +135,13 @@ const SPAWN_DISTANCE := 2000.0
 ]
 
 @export var endless_enemy_scenes: Dictionary = {
-	"Enemy": {
-		"scene":enemy_scene,
+	"Chaser": {
+		"scene":chaser_scene,
 		"interval": 3.0,
 		"timer": 0.0
 	},
-	"FastEnemy": {
-		"scene": fast_enemy_scene,
+	"Spiral": {
+		"scene": spiral_scene,
 		"interval": 5.0,
 		"timer": 0.0
 	}
