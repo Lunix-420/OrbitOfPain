@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bkne57gikkxc6" path="res://scripts/spawner.gd" id="3_3li8b"]
 [ext_resource type="PackedScene" uid="uid://gtbhbm54ufjd" path="res://scenes/projectiles/Teleporter.tscn" id="3_hlp67"]
 [ext_resource type="PackedScene" uid="uid://m1cjpvkoeugn" path="res://scenes/gui/Gui.tscn" id="4_mdl7e"]
-[ext_resource type="PackedScene" uid="uid://dq44tpy22jtkp" path="res://scenes/ships/Enemy.tscn" id="5_w73tk"]
+[ext_resource type="PackedScene" uid="uid://dq44tpy22jtkp" path="res://scenes/ships/Chaser.tscn" id="5_w73tk"]
 [ext_resource type="AudioStream" uid="uid://cwrti7833ut7u" path="res://sounds/energy.mp3" id="6_70d11"]
 [ext_resource type="PackedScene" uid="uid://dmdbx07uhmqlv" path="res://scenes/gui/CanvasLayer.tscn" id="7_ci04x"]
 [ext_resource type="AudioStream" uid="uid://c2xspvdxljwqv" path="res://sounds/exhaust.ogg" id="7_cw2d6"]

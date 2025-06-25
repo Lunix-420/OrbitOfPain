@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://d73nk7l030ma"]
 
-[ext_resource type="Script" uid="uid://c74nmk88dpqw2" path="res://scripts/laser.gd" id="1_rx3qg"]
-[ext_resource type="AudioStream" uid="uid://uvpp0nit5kdw" path="res://sounds/plasma.mp3" id="2_ag3aa"]
-[ext_resource type="Script" uid="uid://ckxwhcbgtcyih" path="res://scripts/projectile_sfx.gd" id="3_ha5if"]
+[ext_resource type="Script" uid="uid://c74nmk88dpqw2" path="res://scripts/enemy_projectile.gd" id="1_bi34v"]
+[ext_resource type="AudioStream" uid="uid://uvpp0nit5kdw" path="res://sounds/plasma.mp3" id="2_joqo1"]
+[ext_resource type="Script" uid="uid://ckxwhcbgtcyih" path="res://scripts/projectile_sfx.gd" id="3_d7idq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq07p"]
 radius = 29.2062
@@ -31,7 +31,7 @@ color_ramp = SubResource("GradientTexture1D_oon8e")
 [node name="Laser" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_rx3qg")
+script = ExtResource("1_bi34v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kq07p")
@@ -43,8 +43,8 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_oon8e")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_ag3aa")
-script = ExtResource("3_ha5if")
+stream = ExtResource("2_joqo1")
+script = ExtResource("3_d7idq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

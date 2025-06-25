@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dq44tpy22jtkp"]
+
+[ext_resource type="Script" uid="uid://bgpwgvnomb7if" path="res://scripts/chaser.gd" id="1_xmjnl"]
+[ext_resource type="PackedScene" uid="uid://cx8dcf6b4y0y0" path="res://scenes/remnants/Energy.tscn" id="2_1av3t"]
+[ext_resource type="Texture2D" uid="uid://cyt6gisrtkt4w" path="res://ships/02.png" id="4_g3ior"]
+[ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="5_kg105"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
+radius = 31.0
+height = 146.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_xmjnl")
+energy_scene = ExtResource("2_1av3t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g3ior")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
+shape = SubResource("CapsuleShape2D_55jtl")
+
+[node name="Explosion" parent="." instance=ExtResource("5_kg105")]

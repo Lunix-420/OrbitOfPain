@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://db7t1gcea1pas"]
+
+[ext_resource type="Script" uid="uid://26nnhg8x06g7" path="res://scripts/sprial.gd" id="1_8gcb8"]
+[ext_resource type="PackedScene" uid="uid://cx8dcf6b4y0y0" path="res://scenes/remnants/Energy.tscn" id="2_adcb0"]
+[ext_resource type="Texture2D" uid="uid://ere5ihfym7r5" path="res://ships/42783.png" id="4_eu7gv"]
+[ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="5_2l4tf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
+radius = 65.0
+height = 210.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_8gcb8")
+energy_scene = ExtResource("2_adcb0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_eu7gv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_55jtl")
+
+[node name="Explosion" parent="." instance=ExtResource("5_2l4tf")]

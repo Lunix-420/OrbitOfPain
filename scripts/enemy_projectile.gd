@@ -13,12 +13,15 @@ var init_speed = 0
 #==================================================================================================#
 # Config
 
-const SPEED = 700.0
+var speed := 1000
 const GAIN = 6.0
 
 #==================================================================================================#
 # Main Behaviors
 
+func set_speed(_speed: float):
+	speed = _speed
+	
 func _ready() -> void:
 	var sfx_clone = sfx.duplicate()
 	sfx_clone.volume_db = GlobalState.sfx_volume + GAIN
@@ -28,7 +31,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation - PI / 2)
-	position += direction * (SPEED + init_speed) * delta
+	position += direction * (speed + init_speed) * delta
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("loose_health"):
