@@ -11,6 +11,10 @@ enum ExhaustDirection {
 }
 
 #==================================================================================================#
+# Control Mode
+const USE_MOUSE_ROTATION: bool = true
+
+#==================================================================================================#
 # State Variables
 
 var is_dead: bool = false
@@ -131,17 +135,29 @@ func _apply_friction(value: float, delta: float) -> float:
 	return 0.0
 
 func _process_rotation(delta: float) -> void:
-	var ccw_input = Input.is_action_pressed("move_turn_ccw")
-	var cw_input = Input.is_action_pressed("move_turn_cw")
-	if ccw_input and not cw_input:
-		sprite.rotation += ROTATE_SPEED * delta
-		consume_energy(BASE_ENERGY_DRAIN * delta)
-	if cw_input and not ccw_input:
-		sprite.rotation -= ROTATE_SPEED * delta
-		consume_energy(BASE_ENERGY_DRAIN * delta)
-		
-#==================================================================================================#
-# Actions
+	if USE_MOUSE_ROTATION:
+		var mouse_pos = get_global_mouse_position()
+		var to_mouse = (mouse_pos - global_position).normalized()
+
+		# We want -X to face the mouse, so we get the angle and subtract PI
+		var target_angle = to_mouse.angle() + PI * 1.5
+		var current_angle = sprite.rotation 
+		var angle_diff = wrapf(target_angle - current_angle, -PI, PI)
+
+		sprite.rotation += clamp(angle_diff, -ROTATE_SPEED * delta, ROTATE_SPEED * delta)
+
+		if abs(angle_diff) > 0.01:
+			consume_energy(BASE_ENERGY_DRAIN * delta)
+	else:
+		var ccw_input = Input.is_action_pressed("move_turn_ccw")
+		var cw_input = Input.is_action_pressed("move_turn_cw")
+		if ccw_input and not cw_input:
+			sprite.rotation += ROTATE_SPEED * delta
+			consume_energy(BASE_ENERGY_DRAIN * delta)
+		if cw_input and not ccw_input:
+			sprite.rotation -= ROTATE_SPEED * delta
+			consume_energy(BASE_ENERGY_DRAIN * delta)
+
 
 func _process_shield(delta: float) -> void:
 	if not GlobalState.perks["shield"]:
