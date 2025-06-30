@@ -10,6 +10,7 @@ extends Node2D
 #Scenes
 @export var chaser_scene: PackedScene
 @export var spiral_scene: PackedScene
+@export var cruiser_scene: PackedScene
 
 #Enemy List
 var current_enemies := []
@@ -17,11 +18,18 @@ var current_enemies := []
 #==================================================================================================#
 # Configs
 
+# Spawn Area
+const MIN_DISTANCE_FROM_PLAYER := 1500.0
 const SPAWN_DISTANCE := 2000.0
+const ARENA_X := -1000.0
+const ARENA_Y := -1000.0
+const ARENA_W := 2000.0
+const ARENA_H := 2000.0
 
 # Hardcoded Waves
 @onready var waves := [
 	{
+		# Wave 1 - Chasers
 		"subwaves": [
 			{
 				"spawn_delay": 0.0,
@@ -44,6 +52,7 @@ const SPAWN_DISTANCE := 2000.0
 		]
 	},
 	{
+		# Wave 2 - Spirals
 		"subwaves": [
 			{
 				"spawn_delay": 0.0,
@@ -243,10 +252,19 @@ func _on_enemy_removed(enemy):
 	if enemy in current_enemies:
 		current_enemies.erase(enemy)
 		GlobalState.register_kill()
-
+		
 func _get_spawn_point() -> Vector2:
-	var angle = randf_range(0, TAU)
-	return global_position + Vector2(cos(angle), sin(angle)) * SPAWN_DISTANCE
+	var point := Vector2.ZERO
+	var tries := 0
+	while tries < 10:
+		point = Vector2(
+			randf_range(ARENA_X, ARENA_X + ARENA_W),
+			randf_range(ARENA_Y, ARENA_Y + ARENA_H)
+		)
+		if point.distance_to(player.global_position) > MIN_DISTANCE_FROM_PLAYER:
+			break
+		tries += 1
+	return point
 
 #==================================================================================================#
 # Endless Mode
