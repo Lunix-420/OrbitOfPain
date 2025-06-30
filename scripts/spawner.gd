@@ -10,7 +10,7 @@ extends Node2D
 #Scenes
 @export var chaser_scene: PackedScene
 @export var spiral_scene: PackedScene
-@export var cruiser_scene: PackedScene
+@export var wave_scene: PackedScene
 
 #Enemy List
 var current_enemies := []
@@ -19,12 +19,11 @@ var current_enemies := []
 # Configs
 
 # Spawn Area
-const MIN_DISTANCE_FROM_PLAYER := 1500.0
-const SPAWN_DISTANCE := 2000.0
-const ARENA_X := -1000.0
-const ARENA_Y := -1000.0
-const ARENA_W := 2000.0
-const ARENA_H := 2000.0
+const SPAWN_DISTANCE := 2500.0
+const ARENA_X := -3000.0
+const ARENA_Y := -3000.0
+const ARENA_W := 6000.0
+const ARENA_H := 6000.0
 
 # Hardcoded Waves
 @onready var waves := [
@@ -76,9 +75,16 @@ const ARENA_H := 2000.0
 		]
 	},
 	{
+		# Wave 3 - Waves
 		"subwaves": [
 			{
 				"spawn_delay": 0.0,
+				"enemies": [
+					{ "scene": wave_scene, "count": 3 }
+				]
+			},
+			{
+				"spawn_delay": 15.0,
 				"enemies": [
 					{ "scene": chaser_scene, "count": 10 }
 				]
@@ -86,57 +92,35 @@ const ARENA_H := 2000.0
 			{
 				"spawn_delay": 20.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 15 }
-				]
-			},
-			{
-				"spawn_delay": 30.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 30 }
+					{ "scene": chaser_scene, "count": 10 },
+					{ "scene": spiral_scene, "count": 3 }
 				]
 			}
 		]
 	},
 	{
+		# Wave 4 - Spirals & Waves
 		"subwaves": [
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 50 }
+					{ "scene": spiral_scene, "count": 3 },
+					{ "scene": wave_scene, "count": 3 }
 				]
 			},
 			{
-				"spawn_delay": 30.0,
+				"spawn_delay": 20.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count":  50 }
+					{ "scene": chaser_scene, "count": 5 },
+					{ "scene": spiral_scene, "count": 2 },
+					{ "scene": wave_scene, "count": 2 }
 				]
 			},
 			{
-				"spawn_delay": 30.0,
+				"spawn_delay": 20.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 50 }
-				]
-			}
-		]
-	},
-	{
-		"subwaves": [
-			{
-				"spawn_delay": 0.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 100 }
-				]
-			},
-			{
-				"spawn_delay": 50.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count":  100 }
-				]
-			},
-			{
-				"spawn_delay": 120.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 200 }
+					{ "scene": spiral_scene, "count": 5 },
+					{ "scene": wave_scene, "count": 5 }
 				]
 			}
 		]
@@ -254,17 +238,28 @@ func _on_enemy_removed(enemy):
 		GlobalState.register_kill()
 		
 func _get_spawn_point() -> Vector2:
-	var point := Vector2.ZERO
-	var tries := 0
-	while tries < 10:
-		point = Vector2(
-			randf_range(ARENA_X, ARENA_X + ARENA_W),
-			randf_range(ARENA_Y, ARENA_Y + ARENA_H)
-		)
-		if point.distance_to(player.global_position) > MIN_DISTANCE_FROM_PLAYER:
+	var spawn_point: Vector2
+	var attempts := 0
+	while true:
+		var angle = randf_range(0, TAU)
+		spawn_point = player.global_position + Vector2(cos(angle), sin(angle)) * SPAWN_DISTANCE
+		
+		if _is_within_arena(spawn_point):
 			break
-		tries += 1
-	return point
+
+		attempts += 1
+		if attempts > 1000:
+			push_warning("Spawn point couldn't be found in 1000 tries, fallback to center")
+			spawn_point = player.global_position
+			break
+
+	return spawn_point
+
+func _is_within_arena(pos: Vector2) -> bool:
+	return (
+		pos.x >= ARENA_X and pos.x <= ARENA_X + ARENA_W and
+		pos.y >= ARENA_Y and pos.y <= ARENA_Y + ARENA_H
+	)
 
 #==================================================================================================#
 # Endless Mode

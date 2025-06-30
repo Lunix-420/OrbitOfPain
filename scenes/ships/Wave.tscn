@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://eredlaon0bll"]
+
+[ext_resource type="Script" uid="uid://dgj8485dyaox0" path="res://scripts/wave.gd" id="1_gwojf"]
+[ext_resource type="PackedScene" uid="uid://cx8dcf6b4y0y0" path="res://scenes/remnants/Energy.tscn" id="2_edl18"]
+[ext_resource type="PackedScene" uid="uid://ddrmimyum8xob" path="res://scenes/projectiles/WaveProjectile.tscn" id="3_bpnd4"]
+[ext_resource type="Texture2D" uid="uid://c4xva34ldpbfg" path="res://ships/93659.png" id="4_bpnd4"]
+[ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="5_sd708"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
+radius = 91.0
+height = 182.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_gwojf")
+energy_scene = ExtResource("2_edl18")
+projectile_scene = ExtResource("3_bpnd4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_bpnd4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_55jtl")
+
+[node name="Explosion" parent="." instance=ExtResource("5_sd708")]

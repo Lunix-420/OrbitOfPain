@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnh4i5egw5wo2"]
+[gd_scene load_steps=7 format=3 uid="uid://q14qkvp0fgth"]
 
 [ext_resource type="Script" uid="uid://bgpwgvnomb7if" path="res://scripts/chaser.gd" id="1_1wfhl"]
 [ext_resource type="PackedScene" uid="uid://cx8dcf6b4y0y0" path="res://scenes/remnants/Energy.tscn" id="2_770sp"]
