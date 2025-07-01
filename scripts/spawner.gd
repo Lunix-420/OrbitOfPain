@@ -156,15 +156,25 @@ const ARENA_H := 5800.0
 	}
 ]
 
-@export var endless_enemy_scenes: Dictionary = {
+@onready var endless_enemy_scenes: Dictionary = {
 	"Chaser": {
 		"scene":chaser_scene,
-		"interval": 3.0,
+		"interval": 5.0,
 		"timer": 0.0
 	},
 	"Spiral": {
 		"scene": spiral_scene,
-		"interval": 5.0,
+		"interval": 10.0,
+		"timer": 0.0
+	},
+	"Wave": {
+		"scene": wave_scene,
+		"interval": 15.0,
+		"timer": 0.0
+	},
+	"Cruiser": {
+		"scene": cruiser_scene,
+		"interval": 20.0,
 		"timer": 0.0
 	}
 }
@@ -294,14 +304,22 @@ func _is_within_arena(pos: Vector2) -> bool:
 # Endless Mode
 
 func _enter_endless() -> void:
+	for key in endless_enemy_scenes.keys():
+		print(" -", key, "=>", endless_enemy_scenes[key])
 	state = GameState.ENDLESS
-	print("Entering Endless Mode!")
 	_on_enter_endless()
 
+var endless_difficulty_timer := 0.0
+var difficulty_scale := 1.0
 func _update_endless(delta: float) -> void:
+	endless_difficulty_timer += delta
+	difficulty_scale = 1.0 + endless_difficulty_timer / 60.0
+	
 	for key in endless_enemy_scenes.keys():
-		var entry = endless_enemy_scenes[key]
-		entry["timer"] += delta
-		if entry["timer"] >= entry["interval"]:
-			_spawn_enemy(entry["scene"])
-			entry["timer"] = 0.0
+		endless_enemy_scenes[key]["timer"] += delta
+		var timer = endless_enemy_scenes[key]["timer"]
+		var interval = endless_enemy_scenes[key]["interval"] / difficulty_scale
+		if timer >= interval:
+			print("Spawning enemy of type:", key)
+			_spawn_enemy(endless_enemy_scenes[key]["scene"])
+			endless_enemy_scenes[key]["timer"] = 0.0

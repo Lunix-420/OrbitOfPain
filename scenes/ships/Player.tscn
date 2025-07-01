@@ -151,7 +151,6 @@ chaser_scene = ExtResource("5_w73tk")
 spiral_scene = ExtResource("8_rd3ux")
 wave_scene = ExtResource("9_u4r6o")
 cruiser_scene = ExtResource("10_kpvfd")
-endless_enemy_scenes = {}
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(-23, -5)
