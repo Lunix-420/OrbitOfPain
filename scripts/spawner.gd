@@ -153,6 +153,48 @@ const ARENA_H := 5800.0
 				]
 			}
 		]
+	},
+	{
+		# Wave 5 - Hardcore
+		"subwaves": [
+			{
+				"spawn_delay": 0.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 20 }
+				]
+			},
+			{
+				"spawn_delay": 20.0,
+				"enemies": [
+					{ "scene": spiral_scene, "count": 8 },
+					{ "scene": wave_scene, "count": 8 }
+				]
+			},
+			{
+				"spawn_delay": 25.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 5 },
+					{ "scene": chaser_scene, "count": 5 },
+				]
+			},
+			{
+				"spawn_delay": 20.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 5 },
+					{ "scene": spiral_scene, "count": 4 },
+					{ "scene": wave_scene, "count": 4 }
+				]
+			},
+			{
+				"spawn_delay": 25.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 3 },
+					{ "scene": spiral_scene, "count": 3 },
+					{ "scene": wave_scene, "count": 3 },
+					{ "scene": chaser_scene, "count": 10 }
+				]
+			}
+		]
 	}
 ]
 
