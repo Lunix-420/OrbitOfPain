@@ -29,7 +29,7 @@ const MAX_BACKWARD_SPEED = 500.0
 const MAX_STRAFE_SPEED = 400.0
 const FORWARD_ACCEL = 2000.0
 const STRAFE_ACCEL = 4000.0
-const ROTATE_SPEED = 4.0
+const ROTATE_SPEED = 10.0
 const FRICTION = 500.0
 
 #==================================================================================================#

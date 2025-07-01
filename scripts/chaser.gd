@@ -35,7 +35,7 @@ const EXPLOSION_GAIN: float = 0.0
 
 func _ready() -> void:
 	player = get_node("../Player")
-	shoot_timer = randf_range(-ATTACK_TIMEOUT * 2, -ATTACK_TIMEOUT * 1.5)
+	shoot_timer = randf_range(-ATTACK_TIMEOUT, -ATTACK_TIMEOUT * 0.5)
 
 func _physics_process(delta: float) -> void:
 	if not GlobalState.game_started or is_dead:

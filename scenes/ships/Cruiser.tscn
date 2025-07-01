@@ -17,6 +17,7 @@ projectile_scene = ExtResource("3_8g1uy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_1wfhl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

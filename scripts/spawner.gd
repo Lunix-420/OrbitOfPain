@@ -33,19 +33,19 @@ const ARENA_H := 5800.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 1 }
-				]
-			},
-			{
-				"spawn_delay": 10.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 2 }
-				]
-			},
-			{
-				"spawn_delay": 10.0,
-				"enemies": [
 					{ "scene": chaser_scene, "count": 3 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 4 }
+				]
+			},
+			{
+				"spawn_delay": 10.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 5 }
 				]
 			}
 		]

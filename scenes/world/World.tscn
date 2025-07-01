@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dd0r1cokjlsj3"]
+[gd_scene load_steps=15 format=3 uid="uid://dd0r1cokjlsj3"]
 
 [ext_resource type="Script" uid="uid://dswfduxi8a8du" path="res://scripts/game.gd" id="1_d1c63"]
 [ext_resource type="PackedScene" uid="uid://71rc8k32st6a" path="res://scenes/ships/Player.tscn" id="1_kqs1s"]
 [ext_resource type="PackedScene" uid="uid://dst87herimqhf" path="res://scenes/world/Borders.tscn" id="3_b3faq"]
 [ext_resource type="AudioStream" uid="uid://dkr6vtv5uglix" path="res://sounds/theme.ogg" id="5_1lgw5"]
 [ext_resource type="PackedScene" uid="uid://2q1cx7u0opul" path="res://scenes/gui/Menu.tscn" id="5_qxiha"]
+[ext_resource type="PackedScene" uid="uid://q14qkvp0fgth" path="res://scenes/ships/Cruiser.tscn" id="6_i1jm3"]
 
 [sub_resource type="Environment" id="Environment_jeodi"]
 background_mode = 3
@@ -434,3 +435,6 @@ process_material = SubResource("ParticleProcessMaterial_1lgw5")
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 follow_viewport_scale = 2.0
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("6_i1jm3")]
+position = Vector2(-485, 135)
