@@ -35,6 +35,7 @@ func reset() -> void:
 	GlobalState.perks["speed"] = true
 	GlobalState.skillpoints = 0
 	GlobalState.highscore = 0
+	reset()
 
 #==================================================================================================#
 # Global Reload
