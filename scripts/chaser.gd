@@ -16,7 +16,8 @@ var kill_timer := 0.0
 const SPEED = 10000.0
 const ATTACK_TIMEOUT = 2.0
 const BASE_SCORE = 1
-const MAX_KILL_TIME = 15 # Max time to get score multiplier on kill
+const MAX_KILL_TIME = 15
+const ROTATION_SPEED = 3.0
 
 #==================================================================================================#
 # Audio Config
@@ -47,7 +48,8 @@ func _physics_process(delta: float) -> void:
 func _process_movement_and_attack(delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED * delta
-	rotation = direction.angle() + PI / 2
+	var target_angle = direction.angle() + PI / 2
+	rotation = lerp_angle(rotation, target_angle, ROTATION_SPEED * delta)
 	_process_shooting(delta)
 
 #==================================================================================================#

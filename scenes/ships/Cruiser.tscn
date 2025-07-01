@@ -1,27 +1,28 @@
 [gd_scene load_steps=7 format=3 uid="uid://q14qkvp0fgth"]
 
-[ext_resource type="Script" uid="uid://bgpwgvnomb7if" path="res://scripts/chaser.gd" id="1_1wfhl"]
 [ext_resource type="PackedScene" uid="uid://cx8dcf6b4y0y0" path="res://scenes/remnants/Energy.tscn" id="2_770sp"]
-[ext_resource type="PackedScene" uid="uid://d73nk7l030ma" path="res://scenes/projectiles/ChaserProjectile.tscn" id="3_8g1uy"]
 [ext_resource type="Texture2D" uid="uid://bamkfiu8uoqtf" path="res://ships/Cruiser02.png" id="4_1wfhl"]
+[ext_resource type="Script" uid="uid://eqckok0rft3n" path="res://scripts/cruiser.gd" id="5_770sp"]
 [ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="5_cei0i"]
+[ext_resource type="PackedScene" uid="uid://bhy0smhxkj16n" path="res://scenes/projectiles/CruiserProjectile.tscn" id="6_8g1uy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
-radius = 31.0
-height = 146.0
+radius = 53.0
+height = 450.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_1wfhl")
+script = ExtResource("5_770sp")
 energy_scene = ExtResource("2_770sp")
-projectile_scene = ExtResource("3_8g1uy")
+projectile_scene = ExtResource("6_8g1uy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 180)
 rotation = 1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_1wfhl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -26)
+position = Vector2(0, 180)
 shape = SubResource("CapsuleShape2D_55jtl")
 
 [node name="Explosion" parent="." instance=ExtResource("5_cei0i")]

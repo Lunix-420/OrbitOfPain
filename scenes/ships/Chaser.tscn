@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="5_kg105"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
-radius = 50.0
-height = 266.0
+radius = 41.0
+height = 236.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_xmjnl")
@@ -16,11 +16,12 @@ energy_scene = ExtResource("2_1av3t")
 projectile_scene = ExtResource("3_xmjnl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+position = Vector2(0, 100)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("4_g3ior")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -26)
+position = Vector2(0, 71)
 shape = SubResource("CapsuleShape2D_55jtl")
 
 [node name="Explosion" parent="." instance=ExtResource("5_kg105")]
