@@ -144,19 +144,13 @@ func _process_rotation(delta: float) -> void:
 		var angle_diff = wrapf(target_angle - current_angle, -PI, PI)
 
 		sprite.rotation += clamp(angle_diff, -ROTATE_SPEED * delta, ROTATE_SPEED * delta)
-
-		if abs(angle_diff) > 0.01:
-			consume_energy(BASE_ENERGY_DRAIN * delta)
 	else:
 		var ccw_input = Input.is_action_pressed("move_turn_ccw")
 		var cw_input = Input.is_action_pressed("move_turn_cw")
 		if ccw_input and not cw_input:
 			sprite.rotation += ROTATE_SPEED * delta
-			consume_energy(BASE_ENERGY_DRAIN * delta)
 		if cw_input and not ccw_input:
 			sprite.rotation -= ROTATE_SPEED * delta
-			consume_energy(BASE_ENERGY_DRAIN * delta)
-
 
 func _process_shield(delta: float) -> void:
 	if not GlobalState.perks["shield"]:

@@ -31,9 +31,8 @@ func reset() -> void:
 	GlobalState.perks["battery"] = true
 	GlobalState.perks["magnet"] = true
 	GlobalState.perks["rocket"] = true
-	GlobalState.perks["dash"] = true
+	GlobalState.perks["healing"] = true
 	GlobalState.perks["speed"] = true
-	GlobalState.perks["health"] = true
 	GlobalState.skillpoints = 0
 	GlobalState.highscore = 0
 

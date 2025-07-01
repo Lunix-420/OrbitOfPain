@@ -120,13 +120,13 @@ const ARENA_H := 5800.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": cruiser_scene, "count": 5 }
+					{ "scene": cruiser_scene, "count": 4 }
 				]
 			},
 			{
 				"spawn_delay": 15.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 10 },
+					{ "scene": chaser_scene, "count": 6 },
 					{ "scene": cruiser_scene, "count": 3 }
 				]
 			},
