@@ -40,7 +40,6 @@ const ENERGY_LOSS = 2000.0
 const ENERGY_PICKUP_STRENGTH = 200
 const WEAPON_COST = 40
 const TELEPORT_COST = 50
-const ENEMY_DAMAGE = 150.0
 const HEALING_SPEED = 20.0
 const SHIELD_COST = 200.0
 const SHIELD_DAMAGE_MULTIPLIER = 0.1
@@ -274,12 +273,12 @@ func _process_healing(delta: float) -> void:
 	var amount = HEALING_SPEED * delta
 	gain_health(amount)
 
-func loose_health() -> void:
+func loose_health(_damage: int) -> void:
 	# Calculate Damage
 	var multiplier = 1.0
 	if (GlobalState.perks["health"]):
-		multiplier = 1.0 / 3.0
-	var damage = ENEMY_DAMAGE * multiplier
+		multiplier = 1.0 / 2.0
+	var damage = _damage * multiplier
 	
 	# Reduce Health or Energy (if shield is active)
 	if not shield.visible:

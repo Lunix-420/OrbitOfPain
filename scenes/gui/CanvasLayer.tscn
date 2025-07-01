@@ -128,7 +128,7 @@ offset_left = -1550.0
 offset_right = -1550.0
 offset_bottom = 0.0
 title_string = "Health Boost"
-text_string = "Doubles maximum amount of HP from 100 to 300"
+text_string = "Doubles maximum amount of HP from 100 to 200"
 icon_texture = ExtResource("5_xh8p2")
 perk = "health"
 metadata/_edit_use_anchors_ = true
@@ -149,7 +149,7 @@ offset_top = -350.0
 offset_right = -1550.0
 offset_bottom = -350.0
 title_string = "Teleport"
-text_string = "Press space to teleport towards mouse"
+text_string = "Press SHIFT to teleport towards mouse"
 icon_texture = ExtResource("7_daoa7")
 perk = "teleport"
 metadata/_edit_use_anchors_ = true
@@ -182,12 +182,12 @@ offset_top = -700.0
 offset_right = 50.0
 offset_bottom = -700.0
 title_string = "Rocket Launcher"
-text_string = "Press CTRL to shoot rockets"
+text_string = "Press TAB to shoot rockets"
 icon_texture = ExtResource("10_giano")
 perk = "rocket"
 metadata/_edit_use_anchors_ = true
 
-[node name="Dash" parent="UpgradeMenu" instance=ExtResource("4_h4fle")]
+[node name="Healing" parent="UpgradeMenu" instance=ExtResource("4_h4fle")]
 offset_left = -1550.0
 offset_top = -1050.0
 offset_right = -1550.0

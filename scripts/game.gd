@@ -11,8 +11,6 @@ extends Node2D
 
 func _ready() -> void:
 	ambience.play()
-	var dir = OS.get_data_dir()
-	print(dir)
 
 func _input(event):
 	if event.is_action_pressed("screenshot"):
@@ -26,4 +24,5 @@ func take_screenshot():
 	var timestamp = Time.get_datetime_string_from_system().replace(":", "-")
 	var path = "user://screenshot_%s.png" % timestamp
 	img.save_png(path)
-	print("Screenshot saved to:", path)
+	var dir = OS.get_data_dir() + "/screenshot_%s.png" % timestamp
+	print("Screenshot saved to: ", dir)

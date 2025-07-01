@@ -21,7 +21,7 @@ const BREAK_DURATION: float = 1.0
 const PROJECTILE_COUNT: int = 16
 const PROJECTILE_SPEED: float = 500.0
 const ROTATION_SPEED: float = 2.0
-const BASE_SCORE: int = 2
+const BASE_SCORE: int = 3
 const MAX_KILL_TIME: float = 15.0
 
 #==================================================================================================#

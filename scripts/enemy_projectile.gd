@@ -9,6 +9,7 @@ extends Area2D
 # State Variables
 
 var init_speed = 0
+@export var damage: int
 
 #==================================================================================================#
 # Config
@@ -35,5 +36,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("loose_health"):
-		body.loose_health()
+		body.loose_health(damage)
 	queue_free()

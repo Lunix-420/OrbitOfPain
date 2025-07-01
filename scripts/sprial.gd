@@ -14,7 +14,7 @@ var kill_timer := 0.0
 
 const ATTACK_TIMEOUT = 0.2  # shoot every 0.2 seconds
 const ROTATION_SPEED = 3.0  # radians per second, tweak for spiral speed
-const BASE_SCORE = 2
+const BASE_SCORE = 3
 const MAX_KILL_TIME = 15
 
 #==================================================================================================#

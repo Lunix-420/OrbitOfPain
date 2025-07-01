@@ -11,6 +11,7 @@ extends Node2D
 @export var chaser_scene: PackedScene
 @export var spiral_scene: PackedScene
 @export var wave_scene: PackedScene
+@export var cruiser_scene: PackedScene
 
 #Enemy List
 var current_enemies := []
@@ -33,19 +34,25 @@ const ARENA_H := 5800.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
+					{ "scene": chaser_scene, "count": 1 }
+				]
+			},
+			{
+				"spawn_delay": 5.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 7.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 8.0,
+				"enemies": [
 					{ "scene": chaser_scene, "count": 3 }
-				]
-			},
-			{
-				"spawn_delay": 10.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 4 }
-				]
-			},
-			{
-				"spawn_delay": 10.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 5 }
 				]
 			}
 		]
@@ -60,16 +67,16 @@ const ARENA_H := 5800.0
 				]
 			},
 			{
-				"spawn_delay": 15.0,
+				"spawn_delay": 10.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 3 }
+					{ "scene": chaser_scene, "count": 5 }
 				]
 			},
 			{
 				"spawn_delay": 10.0,
 				"enemies": [
 					{ "scene": chaser_scene, "count": 3 },
-					{ "scene": spiral_scene, "count": 2 }
+					{ "scene": spiral_scene, "count": 3 }
 				]
 			}
 		]
@@ -84,43 +91,65 @@ const ARENA_H := 5800.0
 				]
 			},
 			{
-				"spawn_delay": 20.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 5 }
-				]
-			},
-			{
 				"spawn_delay": 15.0,
 				"enemies": [
 					{ "scene": chaser_scene, "count": 5 },
 					{ "scene": wave_scene, "count": 3 }
 				]
+			},
+			{
+				"spawn_delay": 15.0,
+				"enemies": [
+					{ "scene": spiral_scene, "count": 3 },
+					{ "scene": wave_scene, "count": 3 }
+				]
+			},
+			{
+				"spawn_delay": 20.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 5 },
+					{ "scene": spiral_scene, "count": 2 },
+					{ "scene": wave_scene, "count": 2 }
+				]
 			}
 		]
 	},
 	{
-		# Wave 4 - Spirals & Waves
+		# Wave 4 - Cruisers
 		"subwaves": [
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": spiral_scene, "count": 2 },
-					{ "scene": wave_scene, "count": 2 }
+					{ "scene": cruiser_scene, "count": 5 }
 				]
 			},
 			{
-				"spawn_delay": 30.0,
+				"spawn_delay": 15.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 3 },
-					{ "scene": spiral_scene, "count": 2 },
-					{ "scene": wave_scene, "count": 2 }
+					{ "scene": chaser_scene, "count": 10 },
+					{ "scene": cruiser_scene, "count": 3 }
 				]
 			},
 			{
-				"spawn_delay": 30.0,
+				"spawn_delay": 15.0,
 				"enemies": [
-					{ "scene": spiral_scene, "count": 3 },
-					{ "scene": wave_scene, "count": 3 }
+					{ "scene": cruiser_scene, "count": 3 },
+					{ "scene": spiral_scene, "count": 5 },
+				]
+			},
+			{
+				"spawn_delay": 15.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 3 },
+					{ "scene": wave_scene, "count": 5 }
+				]
+			},
+			{
+				"spawn_delay": 15.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 3 },
+					{ "scene": spiral_scene, "count": 4 },
+					{ "scene": wave_scene, "count": 4 }
 				]
 			}
 		]

@@ -32,6 +32,7 @@ color_ramp = SubResource("GradientTexture1D_djq3r")
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_kiuyu")
+damage = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kq07p")

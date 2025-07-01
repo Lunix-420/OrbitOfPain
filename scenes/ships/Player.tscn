@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://71rc8k32st6a"]
+[gd_scene load_steps=21 format=3 uid="uid://71rc8k32st6a"]
 
 [ext_resource type="Script" uid="uid://cged4wdm7o1j0" path="res://scripts/player.gd" id="1_qm0ti"]
 [ext_resource type="Texture2D" uid="uid://ceomkl5mknhy0" path="res://ships/03.png" id="2_g2els"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="8_khinc"]
 [ext_resource type="PackedScene" uid="uid://db7t1gcea1pas" path="res://scenes/ships/Spiral.tscn" id="8_rd3ux"]
 [ext_resource type="PackedScene" uid="uid://eredlaon0bll" path="res://scenes/ships/Wave.tscn" id="9_u4r6o"]
+[ext_resource type="PackedScene" uid="uid://q14qkvp0fgth" path="res://scenes/ships/Cruiser.tscn" id="10_kpvfd"]
 [ext_resource type="Texture2D" uid="uid://canxime7mrlmv" path="res://images/Shield.png" id="13_1wvft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4a1"]
@@ -149,6 +150,7 @@ script = ExtResource("3_3li8b")
 chaser_scene = ExtResource("5_w73tk")
 spiral_scene = ExtResource("8_rd3ux")
 wave_scene = ExtResource("9_u4r6o")
+cruiser_scene = ExtResource("10_kpvfd")
 endless_enemy_scenes = {}
 
 [node name="Camera" type="Camera2D" parent="."]
