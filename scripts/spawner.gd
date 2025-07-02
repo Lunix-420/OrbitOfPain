@@ -268,7 +268,7 @@ func start_next_wave() -> void:
 		_enter_endless()
 		return
 
-	print("Wave", current_wave + 1, "starting!")
+	print("Wave ", current_wave + 1, " starting!")
 	state = GameState.WAVE
 	subwave_index = 0
 	subwave_timer = 0.0

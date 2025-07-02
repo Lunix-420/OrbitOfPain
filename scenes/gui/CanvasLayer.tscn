@@ -37,9 +37,9 @@ visible = false
 position = Vector2(1920, 1460)
 
 [node name="Buy" type="Button" parent="BreakMenu"]
-offset_left = 400.0
+offset_left = -1550.0
 offset_top = 350.0
-offset_right = 1550.0
+offset_right = -400.0
 offset_bottom = 550.0
 theme_override_fonts/font = ExtResource("2_v0a7o")
 theme_override_font_sizes/font_size = 100
@@ -57,9 +57,9 @@ theme_override_styles/normal = ExtResource("3_a6jaq")
 text = "Buy Upgrades"
 
 [node name="Next" type="Button" parent="BreakMenu"]
-offset_left = -1550.0
+offset_left = 550.0
 offset_top = 350.0
-offset_right = -550.0
+offset_right = 1550.0
 offset_bottom = 550.0
 theme_override_fonts/font = ExtResource("2_v0a7o")
 theme_override_font_sizes/font_size = 100
