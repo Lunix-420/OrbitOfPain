@@ -232,12 +232,12 @@ func _process_teleport() -> void:
 
 func _start_teleport() -> void:
 	sprite.visible = false
-	collider.disabled = true
+	collider.set_deferred("disabled", true)
 
 func end_teleport(teleport_position: Vector2) -> void:
 	position = teleport_position
 	sprite.visible = true
-	collider.disabled = false
+	collider.set_deferred("disabled", false)
 
 #==================================================================================================#
 # Exhaust
