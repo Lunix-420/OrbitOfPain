@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cx8dcf6b4y0y0" path="res://scenes/remnants/Energy.tscn" id="2_770sp"]
 [ext_resource type="Texture2D" uid="uid://bamkfiu8uoqtf" path="res://ships/Cruiser02.png" id="4_1wfhl"]
-[ext_resource type="Script" uid="uid://eqckok0rft3n" path="res://scripts/cruiser.gd" id="5_770sp"]
+[ext_resource type="Script" uid="uid://csmlyxrballc6" path="res://scripts/cruiser.gd" id="5_770sp"]
 [ext_resource type="PackedScene" uid="uid://ui0uuof2k546" path="res://scenes/remnants/Explosion.tscn" id="5_cei0i"]
-[ext_resource type="PackedScene" uid="uid://bhy0smhxkj16n" path="res://scenes/projectiles/CruiserProjectile.tscn" id="6_8g1uy"]
+[ext_resource type="PackedScene" uid="uid://d5c3c767he3v" path="res://scenes/projectiles/CruiserProjectile.tscn" id="6_8g1uy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55jtl"]
 radius = 53.0
