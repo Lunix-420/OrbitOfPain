@@ -165,13 +165,26 @@ func _process_shield(delta: float) -> void:
 func _process_shooting() -> void:
 	if Input.is_action_just_pressed("action_shoot"):
 		consume_energy(WEAPON_COST)
-		var plasma = plasma_scene.instantiate()
+
 		var dir = -sprite.global_transform.x.normalized()
-		plasma.rotation = dir.angle()
-		plasma.position = shooter.global_position
-		plasma.set("init_speed", forward_speed)
-		get_tree().current_scene.add_child(plasma)
-		
+		var base_pos = shooter.global_position
+		var side_offset = sprite.global_transform.x.normalized() * 50
+		var vert_offset =  sprite.global_transform.y.normalized() * -40
+
+		if GlobalState.perks.has("rocket") and GlobalState.perks["rocket"]:
+			for offset in [-1, 1]:
+				var rocket = plasma_scene.instantiate()
+				rocket.rotation = dir.angle()
+				rocket.position = base_pos + side_offset * offset + vert_offset
+				rocket.set("init_speed", forward_speed)
+				get_tree().current_scene.add_child(rocket)
+		else:
+			var plasma = plasma_scene.instantiate()
+			plasma.rotation = dir.angle()
+			plasma.position = base_pos
+			plasma.set("init_speed", forward_speed)
+			get_tree().current_scene.add_child(plasma)
+
 func _process_teleport() -> void:
 	if not GlobalState.perks["teleport"]:
 		return

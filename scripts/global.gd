@@ -30,14 +30,14 @@ var music_volume := -12.0
 var skillpoints := 0
 
 var perks := {
-	"health" = false,		# Done
-	"shield" = false,		# Done
-	"teleport" = false,		# Done
-	"battery" = false,		# Done 
-	"magnet" = false,		# Done
-	"rocket" = false,		
-	"healing" = false,		# Done
-	"speed" = false			# Done
+	"health"  	= false,		# Done
+	"shield"	= false,		# Done
+	"teleport" 	= false,		# Done
+	"battery" 	= false,		# Done 
+	"magnet" 	= false,		# Done
+	"rocket" 	= false,		
+	"healing" 	= false,		# Done
+	"speed" 	= false			# Done
 }
 
 func reset() -> void:
