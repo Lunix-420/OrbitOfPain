@@ -1,5 +1,21 @@
 extends Node
 
+@onready var world: Node2D = get_node("/root/Game/")
+@onready var player: CharacterBody2D = world.get_node("Player")
+@onready var camera: Camera2D = player.get_node("Camera")
+@onready var canvas: CanvasLayer = camera.get_node("CanvasLayer")
+@onready var upgrade_menu: = canvas.get_node("UpgradeMenu")
+
+@onready var skill_button_health: Control = upgrade_menu.get_node("Health").get_node("Button")
+@onready var skill_button_shield: Control = upgrade_menu.get_node("Shield").get_node("Button")
+@onready var skill_button_teleport: Control = upgrade_menu.get_node("Teleport").get_node("Button")
+@onready var skill_button_battery: Control = upgrade_menu.get_node("Battery").get_node("Button")
+
+@onready var skill_button_magnet: Control = upgrade_menu.get_node("Magnet").get_node("Button")
+@onready var skill_button_rocket: Control = upgrade_menu.get_node("Rocket").get_node("Button")
+@onready var skill_button_healing: Control = upgrade_menu.get_node("Healing").get_node("Button")
+@onready var skill_button_speed: Control = upgrade_menu.get_node("Speed").get_node("Button")
+
 #==================================================================================================#
 # State Variables
 
@@ -25,23 +41,50 @@ var perks := {
 }
 
 func reset() -> void:
-	GlobalState.perks["health"] = true
-	GlobalState.perks["shield"] = true
-	GlobalState.perks["teleport"] = true
-	GlobalState.perks["battery"] = true
-	GlobalState.perks["magnet"] = true
-	GlobalState.perks["rocket"] = true
-	GlobalState.perks["healing"] = true
-	GlobalState.perks["speed"] = true
+	GlobalState.perks["health"] = false
+	GlobalState.perks["shield"] = false
+	GlobalState.perks["teleport"] = false
+	GlobalState.perks["battery"] = false
+	GlobalState.perks["magnet"] = false
+	GlobalState.perks["rocket"] = false
+	GlobalState.perks["healing"] = false
+	GlobalState.perks["speed"] = false
 	GlobalState.skillpoints = 0
 	GlobalState.highscore = 0
-	reset()
+	
+	skill_button_health.disabled = false
+	skill_button_shield.disabled = false
+	skill_button_teleport.disabled = false
+	skill_button_battery.disabled = false
+	skill_button_magnet.disabled = false
+	skill_button_rocket.disabled = false
+	skill_button_healing.disabled = false
+	skill_button_speed.disabled = false
+	
+	skill_button_health.toggle_mode = false
+	skill_button_shield.toggle_mode = false
+	skill_button_teleport.toggle_mode = false
+	skill_button_battery.toggle_mode = false
+	skill_button_magnet.toggle_mode = false
+	skill_button_rocket.toggle_mode = false
+	skill_button_healing.toggle_mode = false
+	skill_button_speed.toggle_mode = false
+	
+	skill_button_health.toggle_mode = true
+	skill_button_shield.toggle_mode = true
+	skill_button_teleport.toggle_mode = true
+	skill_button_battery.toggle_mode = true
+	skill_button_magnet.toggle_mode = true
+	skill_button_rocket.toggle_mode = true
+	skill_button_healing.toggle_mode = true
+	skill_button_speed.toggle_mode = true
 
 #==================================================================================================#
 # Global Reload
 	
 # We need to do this from global scope here, else the game crashes the second time we try
 func reload_scene_after_delay(seconds: float) -> void:
+	reset()
 	await get_tree().create_timer(seconds).timeout
 	get_tree().reload_current_scene()
 	

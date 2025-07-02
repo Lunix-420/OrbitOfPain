@@ -37,24 +37,24 @@ const ARENA_H := 5800.0
 					{ "scene": chaser_scene, "count": 1 }
 				]
 			},
-			{
-				"spawn_delay": 5.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 2 }
-				]
-			},
-			{
-				"spawn_delay": 7.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 2 }
-				]
-			},
-			{
-				"spawn_delay": 8.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 3 }
-				]
-			}
+			#{
+				#"spawn_delay": 5.0,
+				#"enemies": [
+					#{ "scene": chaser_scene, "count": 2 }
+				#]
+			#},
+			#{
+				#"spawn_delay": 7.0,
+				#"enemies": [
+					#{ "scene": chaser_scene, "count": 2 }
+				#]
+			#},
+			#{
+				#"spawn_delay": 8.0,
+				#"enemies": [
+					#{ "scene": chaser_scene, "count": 3 }
+				#]
+			#}
 		]
 	},
 	{
