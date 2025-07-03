@@ -38,9 +38,8 @@ damage = 150
 shape = SubResource("CircleShape2D_kq07p")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 200
+amount = 100
 lifetime = 0.1
-fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_xm7ml")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
