@@ -40,7 +40,7 @@ damage = 200
 shape = SubResource("CircleShape2D_kq07p")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 100
+amount = 50
 lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_jucd3")
 

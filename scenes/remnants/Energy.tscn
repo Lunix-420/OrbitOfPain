@@ -17,8 +17,8 @@ particle_flag_disable_z = true
 angle_min = 1.07288e-05
 angle_max = 360.0
 spread = 180.0
-initial_velocity_min = 300.0
-initial_velocity_max = 300.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
 orbit_velocity_min = -10.0
 orbit_velocity_max = 10.0
 radial_velocity_min = -2.23517e-05
@@ -39,7 +39,7 @@ script = ExtResource("1_eb132")
 shape = SubResource("CircleShape2D_ly2v0")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 200
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_ly2v0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
