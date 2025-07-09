@@ -54,7 +54,7 @@ turbulence_noise_scale = 7.86
 
 [node name="Explosion" type="GPUParticles2D"]
 emitting = false
-amount = 1000
+amount = 500
 lifetime = 0.65
 one_shot = true
 explosiveness = 0.8
