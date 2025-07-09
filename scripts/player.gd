@@ -1,6 +1,11 @@
 extends CharacterBody2D
 
 #==================================================================================================#
+# Cheats
+
+var CANT_DIE: bool = false
+
+#==================================================================================================#
 # Enums
 
 enum ExhaustDirection {
@@ -317,10 +322,11 @@ func consume_energy(amount: float) -> void:
 		death()
 
 func death() -> void:
-	explode()
-	GlobalState.game_started = false
-	sprite.visible = false
-	GlobalState.reload_scene_after_delay(2.0)
+	if not CANT_DIE:
+		explode()
+		GlobalState.game_started = false
+		sprite.visible = false
+		GlobalState.reload_scene_after_delay(2.0)
 
 func explode() -> void:
 	if not GlobalState.game_started:
