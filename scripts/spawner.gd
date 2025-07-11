@@ -38,19 +38,19 @@ const ARENA_H := 5800.0
 				]
 			},
 			{
-				"spawn_delay": 5.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 2 }
-				]
-			},
-			{
-				"spawn_delay": 7.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 2 }
-				]
-			},
-			{
 				"spawn_delay": 8.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 12.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 15.0,
 				"enemies": [
 					{ "scene": chaser_scene, "count": 3 }
 				]
@@ -67,16 +67,16 @@ const ARENA_H := 5800.0
 				]
 			},
 			{
-				"spawn_delay": 10.0,
+				"spawn_delay": 20.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 5 }
+					{ "scene": chaser_scene, "count": 4 }
 				]
 			},
 			{
-				"spawn_delay": 15.0,
+				"spawn_delay": 25.0,
 				"enemies": [
 					{ "scene": chaser_scene, "count": 3 },
-					{ "scene": spiral_scene, "count": 3 }
+					{ "scene": spiral_scene, "count": 2 }
 				]
 			}
 		]
@@ -87,27 +87,26 @@ const ARENA_H := 5800.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": wave_scene, "count": 3 }
-				]
-			},
-			{
-				"spawn_delay": 15.0,
-				"enemies": [
-					{ "scene": chaser_scene, "count": 5 },
-					{ "scene": wave_scene, "count": 3 }
+					{ "scene": wave_scene, "count": 2 }
 				]
 			},
 			{
 				"spawn_delay": 20.0,
 				"enemies": [
-					{ "scene": spiral_scene, "count": 3 },
-					{ "scene": wave_scene, "count": 3 }
+					{ "scene": chaser_scene, "count": 6 },
 				]
 			},
 			{
-				"spawn_delay": 25.0,
+				"spawn_delay": 20.0,
 				"enemies": [
-					{ "scene": chaser_scene, "count": 5 },
+					{ "scene": spiral_scene, "count": 2 },
+					{ "scene": wave_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 35.0,
+				"enemies": [
+					{ "scene": chaser_scene, "count": 3 },
 					{ "scene": spiral_scene, "count": 2 },
 					{ "scene": wave_scene, "count": 2 }
 				]
@@ -120,36 +119,36 @@ const ARENA_H := 5800.0
 			{
 				"spawn_delay": 0.0,
 				"enemies": [
-					{ "scene": cruiser_scene, "count": 4 }
-				]
-			},
-			{
-				"spawn_delay": 20.0,
-				"enemies": [
-					{ "scene": cruiser_scene, "count": 2 },
-					{ "scene": chaser_scene, "count": 8 }
-				]
-			},
-			{
-				"spawn_delay": 20.0,
-				"enemies": [
-					{ "scene": cruiser_scene, "count": 2 },
-					{ "scene": spiral_scene, "count": 5 },
-				]
-			},
-			{
-				"spawn_delay": 20.0,
-				"enemies": [
-					{ "scene": cruiser_scene, "count": 2 },
-					{ "scene": wave_scene, "count": 5 }
+					{ "scene": cruiser_scene, "count": 3 }
 				]
 			},
 			{
 				"spawn_delay": 30.0,
 				"enemies": [
 					{ "scene": cruiser_scene, "count": 2 },
-					{ "scene": spiral_scene, "count": 4 },
-					{ "scene": wave_scene, "count": 4 }
+					{ "scene": chaser_scene, "count": 5 }
+				]
+			},
+			{
+				"spawn_delay": 30.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 2 },
+					{ "scene": spiral_scene, "count": 2 },
+				]
+			},
+			{
+				"spawn_delay": 30.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 2 },
+					{ "scene": wave_scene, "count": 2 }
+				]
+			},
+			{
+				"spawn_delay": 40.0,
+				"enemies": [
+					{ "scene": cruiser_scene, "count": 2 },
+					{ "scene": spiral_scene, "count": 2 },
+					{ "scene": wave_scene, "count": 2 }
 				]
 			}
 		]
@@ -164,29 +163,29 @@ const ARENA_H := 5800.0
 				]
 			},
 			{
-				"spawn_delay": 20.0,
+				"spawn_delay": 40.0,
 				"enemies": [
-					{ "scene": spiral_scene, "count": 8 },
-					{ "scene": wave_scene, "count": 8 }
+					{ "scene": spiral_scene, "count": 4 },
+					{ "scene": wave_scene, "count": 4 }
 				]
 			},
 			{
-				"spawn_delay": 25.0,
+				"spawn_delay": 40.0,
 				"enemies": [
-					{ "scene": cruiser_scene, "count": 4 },
+					{ "scene": cruiser_scene, "count": 3 },
 					{ "scene": chaser_scene, "count": 5 },
 				]
 			},
 			{
-				"spawn_delay": 20.0,
+				"spawn_delay": 40.0,
 				"enemies": [
 					{ "scene": cruiser_scene, "count": 2 },
-					{ "scene": spiral_scene, "count": 5 },
-					{ "scene": wave_scene, "count": 5 }
+					{ "scene": spiral_scene, "count": 3 },
+					{ "scene": wave_scene, "count": 3 }
 				]
 			},
 			{
-				"spawn_delay": 25.0,
+				"spawn_delay": 40.0,
 				"enemies": [
 					{ "scene": cruiser_scene, "count": 2 },
 					{ "scene": spiral_scene, "count": 3 },
